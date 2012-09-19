@@ -7,6 +7,9 @@ from buildconf import *
 
 def build(args):
 	for module in MODULES:
+		for dependency in DEPENDENCIES[module].split(','):
+			if not build_module(dependency, args):
+				return False
 		if not build_module(module, args):
 			return False
 	return True
