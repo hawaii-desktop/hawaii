@@ -3,11 +3,7 @@
 import argparse
 import os
 
-MODULES = [
-	"kde-extra-cmake-modules",
-	"kde-solid",
-	"vibe",
-]
+from buildconf import *
 
 def module(string):
 	"""Argument parser type checker for module arguments"""

@@ -1,16 +1,15 @@
 #!/usr/bin/env python
+# vim:set ts=4 sw=4 et:
 
-import argparse
-import os
+import argparse, subprocess, sys, os
 
-DEPENDENCIES = {
-	"kde-extra-cmake-modules": "",
-	"kde-solid": "",
-	"vibe": "kde-solid",
-}
+from buildconf import *
 
 def build(args):
-	for module in DEPENDENCIES:
+	import shutil
+	for module in MODULES:
+		print "===> Building %s ..." % module
+
 		cmakeargs=[]
 
 		if args.prefix:
@@ -27,11 +26,13 @@ def build(args):
 			cmakeargs.append("-DCMAKE_INSTALL_IMPORTSDIR=" + args.importsdir)
 
 		os.chdir(module)
-		if not os.path.exists("./build"):
-			os.mkdir("build")
+		if os.path.exists("./build"):
+			shutil.rmtree("build")
+		os.mkdir("build")
 		os.chdir("build")
 		os.system("cmake %s .." % " ".join(cmakeargs))
 		os.chdir("../..")
+	return True
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
