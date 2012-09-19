@@ -31,6 +31,10 @@ def build(args):
 	return True
 
 def build_module(module, args):
+	def giveup():
+		os.chdir("../..")
+		return False
+
 	import shutil
 
 	print "===> Building %s ..." % module
@@ -63,9 +67,12 @@ def build_module(module, args):
 		shutil.rmtree("build")
 	os.mkdir("build")
 	os.chdir("build")
-	exec_cmd("cmake %s .." % " ".join(cmakeargs))
-	exec_cmd("make")
-	exec_cmd("sudo make install")
+	if not exec_cmd("cmake %s .." % " ".join(cmakeargs)):
+		give_up()
+	if not exec_cmd("make"):
+		give_up()
+	if not exec_cmd("sudo make install"):
+		give_up()
 	os.system("touch %s" % cookiename)
 
 	os.chdir("../..")
