@@ -6,42 +6,49 @@ import argparse, subprocess, sys, os
 from buildconf import *
 
 def build(args):
-	import shutil
 	for module in MODULES:
-		print "===> Building %s ..." % module
+		if not build_module(module, args):
+			return False
+	return True
 
-		cmakeargs=[]
+def build_module(module, args):
+	import shutil
 
-		if args.build_type:
-			cmakeargs.append("-DCMAKE_BUILD_TYPE=" + args.build_type)
-		if args.prefix:
-			cmakeargs.append("-DCMAKE_INSTALL_PREFIX=" + args.prefix)
-		if args.bindir:
-			cmakeargs.append("-DCMAKE_INSTALL_BINDIR=" + args.bindir)
-		if args.libdir:
-			cmakeargs.append("-DCMAKE_INSTALL_LIBDIR=" + args.libdir)
-		if args.datadir:
-			cmakeargs.append("-DCMAKE_INSTALL_DATADIR=" + args.datadir)
-		if args.pluginsdir:
-			cmakeargs.append("-DCMAKE_INSTALL_PLUGINSDIR=" + args.pluginsdir)
-		if args.importsdir:
-			cmakeargs.append("-DCMAKE_INSTALL_IMPORTSDIR=" + args.importsdir)
+	print "===> Building %s ..." % module
 
-		os.chdir(module)
-		if os.path.exists("./build"):
-			shutil.rmtree("build")
-		os.mkdir("build")
-		os.chdir("build")
-		try:
-			retcode = subprocess.call("cmake %s .." % " ".join(cmakeargs), shell=True)
-			if retcode < 0:
-				print >>sys.stderr, "Child was terminated by signal", -retcode
-			else:
-				print >>sys.stderr, "Child returned", retcode
-				return False
-		except OSError, e:
-			print >>sys.stderr, "Execution failed:", e
-		os.chdir("../..")
+	cmakeargs=[]
+
+	if args.build_type:
+		cmakeargs.append("-DCMAKE_BUILD_TYPE=" + args.build_type)
+	if args.prefix:
+		cmakeargs.append("-DCMAKE_INSTALL_PREFIX=" + args.prefix)
+	if args.bindir:
+		cmakeargs.append("-DCMAKE_INSTALL_BINDIR=" + args.bindir)
+	if args.libdir:
+		cmakeargs.append("-DCMAKE_INSTALL_LIBDIR=" + args.libdir)
+	if args.datadir:
+		cmakeargs.append("-DCMAKE_INSTALL_DATADIR=" + args.datadir)
+	if args.pluginsdir:
+		cmakeargs.append("-DCMAKE_INSTALL_PLUGINSDIR=" + args.pluginsdir)
+	if args.importsdir:
+		cmakeargs.append("-DCMAKE_INSTALL_IMPORTSDIR=" + args.importsdir)
+
+	os.chdir(module)
+	if os.path.exists("./build"):
+		shutil.rmtree("build")
+	os.mkdir("build")
+	os.chdir("build")
+	try:
+		retcode = subprocess.call("cmake %s .." % " ".join(cmakeargs), shell=True)
+		if retcode < 0:
+			print >>sys.stderr, "Child was terminated by signal", -retcode
+		else:
+			print >>sys.stderr, "Child returned", retcode
+		return False
+	except OSError, e:
+		print >>sys.stderr, "Execution failed:", e
+	os.chdir("../..")
+
 	return True
 
 if __name__ == "__main__":
