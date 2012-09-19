@@ -5,6 +5,20 @@ import argparse, subprocess, sys, os
 
 from buildconf import *
 
+def exec_cmd(cmd):
+	try:
+		retcode = subprocess.call(cmd, shell=True)
+		if retcode < 0:
+			print >>sys.stderr, "Child was terminated by signal", -retcode
+		else:
+			print >>sys.stderr, "Child returned", retcode
+		return False
+	except OSError, e:
+		print >>sys.stderr, "Execution failed:", e
+		return False
+
+	return True
+
 def build(args):
 	for module in MODULES:
 		for dependency in DEPENDENCIES[module].split(','):
@@ -49,17 +63,9 @@ def build_module(module, args):
 		shutil.rmtree("build")
 	os.mkdir("build")
 	os.chdir("build")
-	try:
-		retcode = subprocess.call("cmake %s .." % " ".join(cmakeargs), shell=True)
-		if retcode < 0:
-			print >>sys.stderr, "Child was terminated by signal", -retcode
-		else:
-			print >>sys.stderr, "Child returned", retcode
-		return False
-	except OSError, e:
-		print >>sys.stderr, "Execution failed:", e
-		return False
-
+	exec_cmd("cmake %s .." % " ".join(cmakeargs))
+	exec_cmd("make")
+	exec_cmd("sudo make install")
 	os.system("touch %s" % cookiename)
 
 	os.chdir("../..")
