@@ -1,0 +1,57 @@
+#!/usr/bin/env python
+
+import argparse
+import os
+
+DEPENDENCIES = {
+	"kde-extra-cmake-modules": "",
+	"kde-solid": "",
+	"vibe": "kde-solid",
+}
+
+def build(args):
+	for module in DEPENDENCIES:
+		cmakeargs=[]
+
+		if args.prefix:
+			cmakeargs.append("-DCMAKE_INSTALL_PREFIX=" + args.prefix)
+		if args.bindir:
+			cmakeargs.append("-DCMAKE_INSTALL_BINDIR=" + args.bindir)
+		if args.libdir:
+			cmakeargs.append("-DCMAKE_INSTALL_LIBDIR=" + args.libdir)
+		if args.datadir:
+			cmakeargs.append("-DCMAKE_INSTALL_DATADIR=" + args.datadir)
+		if args.pluginsdir:
+			cmakeargs.append("-DCMAKE_INSTALL_PLUGINSDIR=" + args.pluginsdir)
+		if args.importsdir:
+			cmakeargs.append("-DCMAKE_INSTALL_IMPORTSDIR=" + args.importsdir)
+
+		os.chdir(module)
+		if not os.path.exists("./build"):
+			os.mkdir("build")
+		os.chdir("build")
+		os.system("cmake %s .." % " ".join(cmakeargs))
+		os.chdir("../..")
+
+if __name__ == "__main__":
+	parser = argparse.ArgumentParser()
+	parser.add_argument("--build-type", metavar="TYPE", type=str, nargs='?',
+		help="build type (possible values are Release, Debug and RelWithDebInfo)",
+		default="RelWithDebInfo")
+	parser.add_argument("--prefix", metavar="PATH", type=str, nargs='?',
+		help="installation prefix")
+	parser.add_argument("--bindir", metavar="PATH", type=str, nargs='?',
+		help="binaries directory")
+	parser.add_argument("--libdir", metavar="PATH", type=str, nargs='?',
+		help="libraries directory")
+	parser.add_argument("--datadir", metavar="PATH", type=str, nargs='?',
+		help="data directory")
+	parser.add_argument("--pluginsdir", metavar="PATH", type=str, nargs='?',
+		help="plugins directory")
+	parser.add_argument("--importsdir", metavar="PATH", type=str, nargs='?',
+		help="imports directory")
+
+	args = parser.parse_args()
+	build(args)
+
+# vim:set ts=4 sw=4 et:
