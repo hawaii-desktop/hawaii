@@ -12,6 +12,8 @@ def build(args):
 
 		cmakeargs=[]
 
+		if args.build_type:
+			cmakeargs.append("-DCMAKE_BUILD_TYPE=" + args.build_type)
 		if args.prefix:
 			cmakeargs.append("-DCMAKE_INSTALL_PREFIX=" + args.prefix)
 		if args.bindir:
