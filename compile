@@ -8,6 +8,8 @@ from buildconf import *
 def build(args):
 	for module in MODULES:
 		for dependency in DEPENDENCIES[module].split(','):
+			if not dependency:
+				continue
 			if not build_module(dependency, args):
 				return False
 		if not build_module(module, args):
@@ -19,6 +21,7 @@ def build_module(module, args):
 
 	print "===> Building %s ..." % module
 
+	cookiename=".hawaii-ci-cookie"
 	cmakeargs=[]
 
 	if args.build_type:
@@ -37,6 +40,11 @@ def build_module(module, args):
 		cmakeargs.append("-DCMAKE_INSTALL_IMPORTSDIR=" + args.importsdir)
 
 	os.chdir(module)
+
+	# Skip already built modules
+	if os.path.exists("./build/%s" % cookiename):
+		return True
+
 	if os.path.exists("./build"):
 		shutil.rmtree("build")
 	os.mkdir("build")
@@ -50,8 +58,11 @@ def build_module(module, args):
 		return False
 	except OSError, e:
 		print >>sys.stderr, "Execution failed:", e
-	os.chdir("../..")
+		return False
 
+	os.system("touch %s" % cookiename)
+
+	os.chdir("../..")
 	return True
 
 if __name__ == "__main__":
