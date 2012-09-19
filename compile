@@ -77,7 +77,7 @@ if __name__ == "__main__":
 		help="build type (possible values are Release, Debug and RelWithDebInfo)",
 		default="RelWithDebInfo")
 	parser.add_argument("--prefix", metavar="PATH", type=str, nargs='?',
-		help="installation prefix")
+		help="installation prefix", default="/system")
 	parser.add_argument("--bindir", metavar="PATH", type=str, nargs='?',
 		help="binaries directory")
 	parser.add_argument("--libdir", metavar="PATH", type=str, nargs='?',
