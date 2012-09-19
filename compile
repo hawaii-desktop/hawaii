@@ -31,7 +31,7 @@ def build(args):
 	return True
 
 def build_module(module, args):
-	def giveup():
+	def give_up():
 		os.chdir("../..")
 		return False
 
@@ -60,7 +60,7 @@ def build_module(module, args):
 	os.chdir(module)
 
 	# Skip already built modules
-	if os.path.exists("./build/%s" % cookiename):
+	if os.path.exists("./build/%s" % cookiename) and args.rebuild is False:
 		return True
 
 	if os.path.exists("./build"):
@@ -80,6 +80,8 @@ def build_module(module, args):
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
+	parser.add_argument("--rebuild", action="store_true",
+		help="rebuild already built modules")
 	parser.add_argument("--build-type", metavar="TYPE", type=str, nargs='?',
 		help="build type (possible values are Release, Debug and RelWithDebInfo)",
 		default="RelWithDebInfo")
