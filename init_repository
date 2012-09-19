@@ -1,0 +1,50 @@
+#!/usr/bin/env python
+
+import argparse
+import os
+
+MODULES = [
+	"kde-extra-cmake-modules",
+	"kde-solid",
+	"vibe",
+]
+
+def module(string):
+	"""Argument parser type checker for module arguments"""
+	if string in MODULES:
+		return string
+
+	raise argparse.ArgumentTypeError("No such module '%s'" % string)
+
+def fetch(args):
+	modules = args.submodules
+	os.system("git submodule init " + " ".join(modules))
+	os.system("git submodule update " + " ".join(modules))
+	pass
+
+def forward(args):
+	for module in args.submodules:
+		os.chdir(module)
+		os.system("git pull")
+		os.chdir("..")
+
+	if args.make:
+		os.system("./build")
+
+if __name__ == "__main__":
+	root_parser = argparse.ArgumentParser()
+	sps = root_parser.add_subparsers()
+
+	sp = sps.add_parser("fetch", help="initialize and check out submodules")
+	sp.add_argument("submodules", nargs='*', type=module)
+	sp.set_defaults(func=fetch, submodules=MODULES)
+
+	sp = sps.add_parser("forward", help="pull modules in each folder")
+	sp.add_argument("submodules", nargs='*', type=module)
+	sp.add_argument("--make", action='store_true')
+	sp.set_defaults(func=forward, submodules=MODULES, make=False)
+
+	args = root_parser.parse_args()
+	args.func(args)
+
+# vim:set ts=4 sw=4 et:
