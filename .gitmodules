@@ -1,0 +1,9 @@
+[submodule "kde-extra-cmake-modules"]
+	path = kde-extra-cmake-modules
+	url = git://anongit.kde.org/extra-cmake-modules
+[submodule "kde-solid"]
+	path = kde-solid
+	url = https://github.com/hawaii-desktop/solid.git
+[submodule "vibe"]
+	path = vibe
+	url = https://github.com/hawaii-desktop/vibe.git
