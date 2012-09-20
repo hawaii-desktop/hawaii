@@ -61,16 +61,20 @@ def build_module(module, args):
 
 	# Skip already built modules
 	if os.path.exists("./build/%s" % cookiename) and args.rebuild is False:
+		if args.verbose: print "Ignore %s because it was already built!" % module
 		return True
 
 	if os.path.exists("./build"):
 		shutil.rmtree("build")
 	os.mkdir("build")
 	os.chdir("build")
+	if args.verbose: print "Running cmake..."
 	if not exec_cmd("cmake %s .." % " ".join(cmakeargs)):
 		give_up()
+	if args.verbose: print "Running make..."
 	if not exec_cmd("make"):
 		give_up()
+	if args.verbose: print "Running sudo make install..."
 	if not exec_cmd("sudo make install"):
 		give_up()
 	os.system("touch %s" % cookiename)
@@ -80,6 +84,8 @@ def build_module(module, args):
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
+	parser.add_argument("--verbose", action="store_true",
+		help="verbose messages")
 	parser.add_argument("--rebuild", action="store_true",
 		help="rebuild already built modules")
 	parser.add_argument("--build-type", metavar="TYPE", type=str, nargs='?',
