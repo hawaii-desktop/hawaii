@@ -52,13 +52,13 @@ The first time you use this module you have to fetch all the submodules.
 Type the following command in order to fetch the submodules:
 
 ```sh
-./init_repository fetch
+./init-repository fetch
 ```
 
 Every time you want to update the submodules do:
 
 ```sh
-./init_repository forward
+./init-repository forward
 ```
 
 The following command builds the software with default parameters, this means
