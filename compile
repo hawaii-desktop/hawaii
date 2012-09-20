@@ -2,12 +2,15 @@
 # vim:set ts=4 sw=4 et:
 
 import argparse, subprocess, sys, os
-
 from buildconf import *
 
-def exec_cmd(cmd):
+ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
+
+def exec_cmd(cmd, workdir):
 	try:
-		retcode = subprocess.call(cmd, shell=True)
+		shcmd = "cd %s && %s" % (workdir, cmd)
+		print shcmd
+		retcode = subprocess.call(shcmd, shell=True)
 		if retcode < 0:
 			print >>sys.stderr, "Child was terminated by signal", -retcode
 		return False
@@ -55,29 +58,32 @@ def build_module(module, args):
 	if args.importsdir:
 		cmakeargs.append("-DCMAKE_INSTALL_IMPORTSDIR=" + args.importsdir)
 
-	os.chdir(module)
+	workdir = os.path.join(ROOT_DIR, module, "build")
+	origworkdir = os.getcwd()
 
-	# Skip already built modules
-	if os.path.exists("./build/%s" % cookiename) and args.rebuild is False:
-		if args.verbose: print "Ignore %s because it was already built!" % module
-		return True
+	# Create the build directory if it's either not found or we're in rebuild mode
+	if not os.path.exists(os.path.join(workdir, cookiename) or args.rebuild:
+		if os.path.exists(workdir):
+			shutil.rmtree(workdir)
+		os.mkdir(workdir)
 
-	if os.path.exists("./build"):
-		shutil.rmtree("build")
-	os.mkdir("build")
-	os.chdir("build")
 	if args.verbose: print "Running cmake..."
-	if not exec_cmd("cmake %s .." % " ".join(cmakeargs)):
+	if not exec_cmd("cmake %s .." % " ".join(cmakeargs), workdir):
 		give_up()
-	if args.verbose: print "Running make..."
-	if not exec_cmd("make"):
-		give_up()
-	if args.verbose: print "Running sudo make install..."
-	if not exec_cmd("sudo make install"):
-		give_up()
-	os.system("touch %s" % cookiename)
 
-	os.chdir("../..")
+	if args.verbose: print "Running make..."
+	if not exec_cmd("make", workdir):
+		give_up()
+
+	if args.verbose: print "Running sudo make install..."
+	if not exec_cmd("sudo make install", workdir):
+		give_up()
+
+	if args.verbose: print "Saving the cookie..."
+	if not exec_cmd("touch %s" % cookiename, workdir):
+		give_up()
+
+	os.chdir(origworkdir)
 	return True
 
 if __name__ == "__main__":
