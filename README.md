@@ -6,6 +6,45 @@ It contains git submodules for the whole desktop environment, something
 very useful for continuous integration that also make building from git
 easier.
 
+Dependencies
+------------
+
+In order to build the submodules you need CMake 2.8.9 or better and Qt 5.
+Wayland and QtWayland are needed only for the greenisland submodule.
+
+If you are building under Maui there's no problem because it satisfies
+Hawaii requirements, but you might not be so lucky with other distributions.
+
+### Building dependencies from sources
+
+Build CMake from sources, look at here:
+
+http://www.cmake.org/cmake/resources/software.html
+
+Read the following pages to build Qt 5 and Wayland from sources:
+
+http://wayland.freedesktop.org/building.html
+http://qt-project.org/wiki/Building_Qt_5_from_Git
+
+Some guidance can be found here:
+
+http://www.maui-project.org/en/get-involved/coding/
+
+### Install dependencies on Ubuntu
+
+CMake 2.8.9 was backported from Quantal to Precise by Pier Luigi Fiorini.
+Add the PPA and install the package by typing:
+
+```sh
+sudo add-apt-repository ppa:plfiorini/cmake
+sudo apt-get update
+sudo apt-get install cmake
+```
+
+There's also a PPA for Qt 5 maintained by Canonical:
+
+https://launchpad.net/~canonical-qt5-edgers/+archive/qt5-daily
+
 How to use it
 -------------
 
@@ -40,8 +79,11 @@ export XDG_DATA_DIRS=$XDG_DATA_DIRS:/system/data/
 export LD_LIBRARY_PATH=/system/lib:$LD_LIBRARY_PATH
 ```
 
-However you might want to build with a different configuration, for example if
-you are going to build under another Linux distribution you should type:
+What if you are not building under Maui?
+----------------------------------------
+
+Maui has a different file hierarchy. If you are building for another
+Linux distribution you have to pass appropriate arguments:
 
 ```sh
 ./compile --prefix=/usr/local --datadir=share
@@ -53,6 +95,6 @@ Just like with a build for Maui, you need to properly set your environment:
 export PATH=/usr/local/bin:$PATH
 export QT_PLUGIN_PATH=/usr/local/plugins:$QT_PLUGIN_PATH
 export QML_IMPORT_PATH=/usr/local/imports:$QML_IMPORT_PATH
-export XDG_DATA_DIRS=$XDG_DATA_DIRS:/usr/local/data/
+export XDG_DATA_DIRS=$XDG_DATA_DIRS:/usr/local/share/
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 ```
