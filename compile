@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# vim:set ts=4 sw=4 et:
 
 import argparse, subprocess, sys, os
 from buildconf import *
@@ -22,16 +21,17 @@ def exec_cmd(cmd, workdir):
 
 def build(args):
 	for module in MODULES:
-		for dependency in DEPENDENCIES[module].split(','):
-			if not dependency:
-				continue
-			if not build_module(dependency, args):
-				return False
 		if not build_module(module, args):
 			return False
 	return True
 
 def build_module(module, args):
+	# Build dependencies recursively
+	dependencies = DEPENDENCIES[module].split(',') if DEPENDENCIES[module] else None
+	if dependencies:
+		for dependency in dependencies:
+			build_module(dependency, args)
+
 	import shutil
 
 	print "===> Building %s ..." % module
@@ -59,7 +59,7 @@ def build_module(module, args):
 	retval = True
 
 	# Create the build directory if it's either not found or we're in rebuild mode
-	if not os.path.exists(os.path.join(workdir, cookiename) or args.rebuild:
+	if not os.path.exists(os.path.join(workdir, cookiename)) or args.rebuild:
 		if os.path.exists(workdir):
 			shutil.rmtree(workdir)
 		os.mkdir(workdir)
