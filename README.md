@@ -48,6 +48,8 @@ https://launchpad.net/~canonical-qt5-edgers/+archive/qt5-daily
 How to use it
 -------------
 
+### Fetch submodules
+
 The first time you use this module you have to fetch all the submodules.
 Type the following command in order to fetch the submodules:
 
@@ -55,10 +57,24 @@ Type the following command in order to fetch the submodules:
 ./init-repository fetch
 ```
 
+To see more information about fetch arguments:
+
+```sh
+./init-repository fetch -h
+```
+
+### Update submodules
+
 Every time you want to update the submodules do:
 
 ```sh
 ./init-repository forward
+```
+
+To see more information about forward arguments:
+
+```sh
+./init-repository forward -h
 ```
 
 The following command builds the software with default parameters, this means
