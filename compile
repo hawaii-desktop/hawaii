@@ -12,7 +12,7 @@ def exec_cmd(cmd, workdir):
 		retcode = subprocess.call(shcmd, shell=True)
 		if retcode < 0:
 			print >>sys.stderr, "Child was terminated by signal", -retcode
-		return False
+			return False
 	except OSError, e:
 		print >>sys.stderr, "Execution failed:", e
 		return False
