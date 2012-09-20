@@ -32,10 +32,6 @@ def build(args):
 	return True
 
 def build_module(module, args):
-	def give_up():
-		os.chdir("../..")
-		return False
-
 	import shutil
 
 	print "===> Building %s ..." % module
@@ -60,6 +56,7 @@ def build_module(module, args):
 
 	workdir = os.path.join(ROOT_DIR, module, "build")
 	origworkdir = os.getcwd()
+	retval = True
 
 	# Create the build directory if it's either not found or we're in rebuild mode
 	if not os.path.exists(os.path.join(workdir, cookiename) or args.rebuild:
@@ -69,22 +66,25 @@ def build_module(module, args):
 
 	if args.verbose: print "Running cmake..."
 	if not exec_cmd("cmake %s .." % " ".join(cmakeargs), workdir):
-		give_up()
+		retval = False
 
-	if args.verbose: print "Running make..."
-	if not exec_cmd("make", workdir):
-		give_up()
+	if retval:
+		if args.verbose: print "Running make..."
+		if not exec_cmd("make", workdir):
+			retval = False
 
-	if args.verbose: print "Running sudo make install..."
-	if not exec_cmd("sudo make install", workdir):
-		give_up()
+	if retval:
+		if args.verbose: print "Running sudo make install..."
+		if not exec_cmd("sudo make install", workdir):
+			retval = False
 
-	if args.verbose: print "Saving the cookie..."
-	if not exec_cmd("touch %s" % cookiename, workdir):
-		give_up()
+	if retval:
+		if args.verbose: print "Saving the cookie..."
+		if not exec_cmd("touch %s" % cookiename, workdir):
+			retval = False
 
 	os.chdir(origworkdir)
-	return True
+	return retval
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
