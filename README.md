@@ -124,3 +124,17 @@ export QML_IMPORT_PATH=/usr/local/imports:$QML_IMPORT_PATH
 export XDG_DATA_DIRS=$XDG_DATA_DIRS:/usr/local/share/
 export LD_LIBRARY_PATH=/usr/local/lib${libext}:$LD_LIBRARY_PATH
 ```
+
+Notes
+-----
+
+Building a module is a four step process:
+
+ 1. Run cmake to configure the submodule.
+ 2. Run make to compile the software.
+ 3. Run sudo make install to install the software.
+ 4. Create a cookie that indicates the submodule was already built.
+
+If you see a password prompt it's probably the installation step that
+is asking the password.  This might happen multiple times during the
+build process if the build time is greater than sudo timeout.
