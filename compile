@@ -83,7 +83,7 @@ def build_module(module, args):
 
 	if retval:
 		if args.verbose: print "Saving the cookie..."
-		if not exec_cmd("touch %s" % cookiename, workdir):
+		if not exec_cmd("date > %s" % cookiename, workdir):
 			retval = False
 
 	os.chdir(origworkdir)
