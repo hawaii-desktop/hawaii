@@ -93,7 +93,9 @@ def build_module(module, args):
 
 	cookiename = ".hawaii-ci-cookie"
 	cmakeargs = parse_args(args)
-	workdir = os.path.join(ROOT_DIR, module, "build")
+	moduledir = os.path.join(ROOT_DIR, module)
+	builddir = os.path.join(ROOT_DIR, "build")
+	workdir = os.path.join(builddir, module)
 	origworkdir = os.getcwd()
 	retval = True
 
@@ -101,10 +103,10 @@ def build_module(module, args):
 	if not os.path.exists(os.path.join(workdir, cookiename)) or args.rebuild:
 		if os.path.exists(workdir):
 			shutil.rmtree(workdir)
-		os.mkdir(workdir)
+		os.system("mkdir -p %s" % workdir)
 
 	if args.verbose: print "Running cmake..."
-	if not exec_cmd("cmake %s .." % " ".join(cmakeargs), workdir):
+	if not exec_cmd("cmake %s %s" % (" ".join(cmakeargs), moduledir), workdir):
 		retval = False
 
 	if retval:
