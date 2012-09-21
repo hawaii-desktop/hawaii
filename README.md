@@ -88,11 +88,12 @@ and everything gets installed under the Maui file hierarchy.
 Remember to properly configure your environment:
 
 ```sh
+[ "$(uname -m)" = "x86_64" ] && libext=64 || libext=
 export PATH=/system/bin:$PATH
 export QT_PLUGIN_PATH=/system/plugins:$QT_PLUGIN_PATH
 export QML_IMPORT_PATH=/system/imports:$QML_IMPORT_PATH
 export XDG_DATA_DIRS=$XDG_DATA_DIRS:/system/data/
-export LD_LIBRARY_PATH=/system/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/system/lib${libext}:$LD_LIBRARY_PATH
 ```
 
 What if you are not building under Maui?
@@ -116,9 +117,10 @@ Or you can just run compile like this:
 Just like with a build for Maui, you need to properly set your environment:
 
 ```sh
+[ "$(uname -m)" = "x86_64" ] && libext=64 || libext=
 export PATH=/usr/local/bin:$PATH
 export QT_PLUGIN_PATH=/usr/local/plugins:$QT_PLUGIN_PATH
 export QML_IMPORT_PATH=/usr/local/imports:$QML_IMPORT_PATH
 export XDG_DATA_DIRS=$XDG_DATA_DIRS:/usr/local/share/
-export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/lib${libext}:$LD_LIBRARY_PATH
 ```
