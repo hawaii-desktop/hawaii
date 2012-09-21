@@ -36,7 +36,7 @@ def parse_args(args):
 	cmakeargs = []
 	for key in params.keys():
 		# Ignore arguments that are not related to the directories
-		if key in ("verbose", "rebuild", "linux-fhs"):
+		if key in ("verbose", "rebuild", "linux_fhs"):
 			continue
 
 		# Append the argument if makes sense
