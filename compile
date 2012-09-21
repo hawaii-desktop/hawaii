@@ -22,7 +22,7 @@ def parse_args(args):
 			"libdir": "lib",
 			"importsdir": "imports",
 			"includedir": "include",
-			"pkgconfig": "lib/pkgconfig",
+			"pkgconfigdir": "lib/pkgconfig",
 			"cmakedir": "lib/cmake",
 			"datarootdir": "share",
 			"datadir": None,
