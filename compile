@@ -72,6 +72,10 @@ def build(args):
 	return True
 
 def build_module(module, args):
+	# Ignore modules from the black list
+	if module in IGNORED_MODULES:
+		return True
+
 	# Build dependencies recursively
 	dependencies = DEPENDENCIES[module].split(',') if DEPENDENCIES[module] else None
 	if dependencies:

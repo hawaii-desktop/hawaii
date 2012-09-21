@@ -16,6 +16,11 @@ MODULES = [
 	"widget-factory",
 ]
 
+# Ignore modules
+IGNORED_MODULES = [
+	"kde-solid",
+]
+
 # Dependencies
 DEPENDENCIES = {
 	"kde-extra-cmake-modules": "",
