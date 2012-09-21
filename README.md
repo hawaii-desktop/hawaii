@@ -125,6 +125,26 @@ export XDG_DATA_DIRS=$XDG_DATA_DIRS:/usr/local/share/
 export LD_LIBRARY_PATH=/usr/local/lib${libext}:$LD_LIBRARY_PATH
 ```
 
+Blacklist and whitelist
+-----------------------
+
+The compile script also lets you specify a blacklist and a whitelist
+of submodules.
+
+In the following example we assume that compile ignores icon-themes by
+default. We put kde-solid and vibe into the blacklist and override the
+default blacklist by placing icon-themes on the whitelist:
+
+```sh
+./compile --blacklist kde-solid vibe --whitelist icon-themes
+```
+
+If both --blacklist and --whitelist are passed, the latter takes
+precedence.
+
+*Beware*, if you blacklist a submodule that is a dependency of another
+submodule the build might break.  There's no control, you have to be clever.
+
 Notes
 -----
 

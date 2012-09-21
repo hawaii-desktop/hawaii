@@ -36,7 +36,7 @@ def parse_args(args):
 	cmakeargs = []
 	for key in params.keys():
 		# Ignore arguments that are not related to the directories
-		if key in ("verbose", "rebuild", "linux_fhs"):
+		if key in ("verbose", "rebuild", "linux_fhs", "blacklist", "whitelist"):
 			continue
 
 		# Append the argument if makes sense
@@ -77,8 +77,11 @@ def build(args):
 	return True
 
 def build_module(module, args):
-	# Ignore modules from the black list
-	if module in IGNORED_MODULES:
+	# Ignore modules on the black list
+	blacklist = args.blacklist if args.blacklist else []
+	whitelist = args.whitelist if args.whitelist else []
+	blacklist = list(set(IGNORED_MODULES + blacklist) - set(whitelist))
+	if module in blacklist:
 		return True
 
 	# Build dependencies recursively
@@ -129,6 +132,7 @@ def build_module(module, args):
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
+
 	parser.add_argument("--verbose", action="store_true",
 		help="verbose messages")
 	parser.add_argument("--rebuild", action="store_true",
@@ -136,8 +140,15 @@ if __name__ == "__main__":
 	parser.add_argument("--build-type", metavar="TYPE", type=str, nargs='?',
 		help="build type (possible values are Release, Debug and RelWithDebInfo)",
 		default="RelWithDebInfo")
+
+	parser.add_argument("--whitelist", metavar="MODULE", type=str, nargs='*',
+		help="build the module specified even if it's on the black list")
+	parser.add_argument("--blacklist", metavar="MODULE", type=str, nargs='*',
+		help="don't build the module specified by placing it on the black list")
+
 	parser.add_argument("--linux-fhs", action="store_true",
 		help="install software using Linux FHS")
+
 	parser.add_argument("--prefix", metavar="PATH", type=str, nargs='?',
 		help="installation prefix", default="/system")
 	parser.add_argument("--bindir", metavar="PATH", type=str, nargs='?',
