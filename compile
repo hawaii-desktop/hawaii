@@ -42,20 +42,20 @@ def build_module(module, args):
 	cookiename=".hawaii-ci-cookie"
 	cmakeargs=[]
 
-	if args.build_type:
-		cmakeargs.append("-DCMAKE_BUILD_TYPE=" + args.build_type)
-	if args.prefix:
-		cmakeargs.append("-DCMAKE_INSTALL_PREFIX=" + args.prefix)
-	if args.bindir:
-		cmakeargs.append("-DCMAKE_INSTALL_BINDIR=" + args.bindir)
-	if args.libdir:
-		cmakeargs.append("-DCMAKE_INSTALL_LIBDIR=" + args.libdir)
-	if args.datadir:
-		cmakeargs.append("-DCMAKE_INSTALL_DATADIR=" + args.datadir)
-	if args.pluginsdir:
-		cmakeargs.append("-DCMAKE_INSTALL_PLUGINSDIR=" + args.pluginsdir)
-	if args.importsdir:
-		cmakeargs.append("-DCMAKE_INSTALL_IMPORTSDIR=" + args.importsdir)
+	# CMake arguments from parameters
+	params = vars(args)
+	for key in params.keys():
+		# Ignore verbose and rebuild arguments
+		if key in ("verbose", "rebuild"):
+			continue
+
+		# Append the argument if makes sense
+		if not params[key]:
+			continue
+		cmdname = key.upper()
+		if key != "build_type":
+			cmdname = "INSTALL_" + cmdname
+		cmakeargs.append("-DCMAKE_%s=%s" % (cmdname, params[key]))
 
 	workdir = os.path.join(ROOT_DIR, module, "build")
 	origworkdir = os.getcwd()
