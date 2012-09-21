@@ -102,14 +102,40 @@ if __name__ == "__main__":
 		help="installation prefix", default="/system")
 	parser.add_argument("--bindir", metavar="PATH", type=str, nargs='?',
 		help="binaries directory")
+	parser.add_argument("--appsdir", metavar="PATH", type=str, nargs='?',
+		help="desktop files directory")
+	parser.add_argument("--progsdir", metavar="PATH", type=str, nargs='?',
+		help="programs directory")
+	parser.add_argument("--serversdir", metavar="PATH", type=str, nargs='?',
+		help="server executables directory")
+	parser.add_argument("--sysconfdir", metavar="PATH", type=str, nargs='?',
+		help="system configuration directory")
+	parser.add_argument("--localstatedir", metavar="PATH", type=str, nargs='?',
+		help="modifiable single-machine data")
 	parser.add_argument("--libdir", metavar="PATH", type=str, nargs='?',
 		help="libraries directory")
-	parser.add_argument("--datadir", metavar="PATH", type=str, nargs='?',
-		help="data directory")
 	parser.add_argument("--pluginsdir", metavar="PATH", type=str, nargs='?',
 		help="plugins directory")
 	parser.add_argument("--importsdir", metavar="PATH", type=str, nargs='?',
 		help="imports directory")
+	parser.add_argument("--includedir", metavar="PATH", type=str, nargs='?',
+		help="header files directory")
+	parser.add_argument("--pkgconfigdir", metavar="PATH", type=str, nargs='?',
+		help="pkg-config directory")
+	parser.add_argument("--cmakedir", metavar="PATH", type=str, nargs='?',
+		help="cmake directory")
+	parser.add_argument("--datarootdir", metavar="PATH", type=str, nargs='?',
+		help="data root directory")
+	parser.add_argument("--datadir", metavar="PATH", type=str, nargs='?',
+		help="data directory")
+	parser.add_argument("--docdir", metavar="PATH", type=str, nargs='?',
+		help="documentation directory")
+	parser.add_argument("--infodir", metavar="PATH", type=str, nargs='?',
+		help="info directory")
+	parser.add_argument("--mandir", metavar="PATH", type=str, nargs='?',
+		help="man directory")
+	parser.add_argument("--localedir", metavar="PATH", type=str, nargs='?',
+		help="locale directory")
 
 	args = parser.parse_args()
 	build(args)
