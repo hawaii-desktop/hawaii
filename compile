@@ -5,6 +5,49 @@ from buildconf import *
 
 ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
 
+def parse_args(args):
+	# Convert arguments to a dictionary
+	params = vars(args)
+
+	# If --linux-fhs was passed we set the directory arguments with defaults
+	# for standard Linux distributions
+	if args.linux_fhs:
+		params.update({
+			"bindir": "bin",
+			"appsdir": "share/applications",
+			"progsdir": "bin",
+			"serversdir": "bin",
+			"sysconfdir": "/etc",
+			"localstatedir": "/var",
+			"libdir": "lib",
+			"importsdir": "imports",
+			"includedir": "include",
+			"pkgconfig": "lib/pkgconfig",
+			"cmakedir": "lib/cmake",
+			"datarootdir": "share",
+			"datadir": None,
+			"docdir": None,
+			"infodir": None,
+			"mandir": None,
+			"localedir": None
+		})
+
+	# CMake arguments from parameters
+	cmakeargs = []
+	for key in params.keys():
+		# Ignore --verbose and --rebuild arguments
+		if key in ("verbose", "rebuild"):
+			continue
+
+		# Append the argument if makes sense
+		if not params[key]:
+			continue
+		cmdname = key.upper()
+		if key != "build_type":
+			cmdname = "INSTALL_" + cmdname
+		cmakeargs.append("-DCMAKE_%s=%s" % (cmdname, params[key]))
+	return cmakeargs
+
 def exec_cmd(cmd, workdir):
 	try:
 		shcmd = "cd %s && %s" % (workdir, cmd)
@@ -39,24 +82,8 @@ def build_module(module, args):
 
 	print "===> Building %s ..." % module
 
-	cookiename=".hawaii-ci-cookie"
-	cmakeargs=[]
-
-	# CMake arguments from parameters
-	params = vars(args)
-	for key in params.keys():
-		# Ignore verbose and rebuild arguments
-		if key in ("verbose", "rebuild"):
-			continue
-
-		# Append the argument if makes sense
-		if not params[key]:
-			continue
-		cmdname = key.upper()
-		if key != "build_type":
-			cmdname = "INSTALL_" + cmdname
-		cmakeargs.append("-DCMAKE_%s=%s" % (cmdname, params[key]))
-
+	cookiename = ".hawaii-ci-cookie"
+	cmakeargs = parse_args(args)
 	workdir = os.path.join(ROOT_DIR, module, "build")
 	origworkdir = os.getcwd()
 	retval = True
@@ -98,6 +125,8 @@ if __name__ == "__main__":
 	parser.add_argument("--build-type", metavar="TYPE", type=str, nargs='?',
 		help="build type (possible values are Release, Debug and RelWithDebInfo)",
 		default="RelWithDebInfo")
+	parser.add_argument("--linux-fhs", action="store_true",
+		help="install software using Linux FHS")
 	parser.add_argument("--prefix", metavar="PATH", type=str, nargs='?',
 		help="installation prefix", default="/system")
 	parser.add_argument("--bindir", metavar="PATH", type=str, nargs='?',

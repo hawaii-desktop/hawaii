@@ -102,7 +102,15 @@ Maui has a different file hierarchy. If you are building for another
 Linux distribution you have to pass appropriate arguments:
 
 ```sh
-./compile --prefix=/usr/local --appsdir=share/applications --progsdir=bin --serversdir=bin --sysconfdir=/etc --localstatedir=/var --includedir=include --pkgconfig=lib/pkgconfig --cmakedir=lib/cmake --datarootdir=share
+./compile --prefix=/usr/local --appsdir=share/applications --progsdir=bin \
+  --serversdir=bin --sysconfdir=/etc --localstatedir=/var --includedir=include \
+  --pkgconfig=lib/pkgconfig --cmakedir=lib/cmake --datarootdir=share
+```
+
+Or you can just run compile like this:
+
+```sh
+./compile --prefix=/usr/local --linux-fhs
 ```
 
 Just like with a build for Maui, you need to properly set your environment:
