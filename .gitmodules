@@ -7,3 +7,36 @@
 [submodule "vibe"]
 	path = vibe
 	url = https://github.com/hawaii-desktop/vibe.git
+[submodule "widget-styles"]
+	path = widget-styles
+	url = https://github.com/hawaii-desktop/widget-styles.git
+[submodule "icon-themes"]
+	path = icon-themes
+	url = https://github.com/hawaii-desktop/icon-themes.git
+[submodule "wallpapers"]
+	path = wallpapers
+	url = https://github.com/hawaii-desktop/wallpapers.git
+[submodule "widget-factory"]
+	path = widget-factory
+	url = https://github.com/hawaii-desktop/widget-factory.git
+[submodule "loginmanager"]
+	path = loginmanager
+	url = https://github.com/hawaii-desktop/loginmanager.git
+[submodule "greenisland"]
+	path = greenisland
+	url = https://github.com/hawaii-desktop/greenisland.git
+[submodule "system-preferences"]
+	path = system-preferences
+	url = https://github.com/hawaii-desktop/system-preferences.git
+[submodule "swordfish"]
+	path = swordfish
+	url = https://github.com/hawaii-desktop/swordfish.git
+[submodule "terminal"]
+	path = terminal
+	url = https://github.com/hawaii-desktop/terminal.git
+[submodule "eyesight"]
+	path = eyesight
+	url = https://github.com/hawaii-desktop/eyesight.git
+[submodule "archiver"]
+	path = archiver
+	url = https://github.com/hawaii-desktop/archiver.git
