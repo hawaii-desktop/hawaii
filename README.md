@@ -88,7 +88,22 @@ and everything gets installed under the Maui file hierarchy.
 ./compile
 ```
 
-Remember to properly configure your environment once you have done:
+To see more information about compile arguments:
+
+```sh
+./compile -h
+```
+
+You can change the build profile With the --build-type argument, available
+profiles are:
+
+* **Release**: produce fully optimized code without debugging symbols.
+* **Debug**: executables are not optimized and contains debugging
+  symbols.
+* **RelWithDebInfo** (default): same as the **Release** mode with
+  debugging symbols.
+
+Once you have done building remember to properly configure your environment:
 
 ```sh
 # Save original environment variables
