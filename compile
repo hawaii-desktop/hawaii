@@ -193,6 +193,7 @@ if __name__ == "__main__":
 		help="locale directory")
 
 	args = parser.parse_args()
-	build(args)
+	if not build(args):
+		sys.exit(1)
 
 # vim:set ts=4 sw=4 et:
