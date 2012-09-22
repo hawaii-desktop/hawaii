@@ -24,8 +24,8 @@ If you system doesn't support CMake 2.8.9+, take a look [here](http://www.cmake.
 
 Read the following pages to build Qt 5 and Wayland from sources:
 
-http://wayland.freedesktop.org/building.html
-http://qt-project.org/wiki/Building_Qt_5_from_Git
+* http://wayland.freedesktop.org/building.html
+* http://qt-project.org/wiki/Building_Qt_5_from_Git
 
 Some guidance can be found here:
 
