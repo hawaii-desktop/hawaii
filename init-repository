@@ -15,6 +15,7 @@ def module(string):
 def fetch(args):
 	modules = args.submodules
 	os.system("git submodule init " + " ".join(modules))
+	os.system("git config commit.template " + os.path.join(ROOT_DIR, ".commit-template"))
 	os.system("git submodule update " + " ".join(modules))
 	pass
 
