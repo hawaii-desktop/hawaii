@@ -9,17 +9,18 @@ easier.
 Dependencies
 ------------
 
-In order to build the submodules you need CMake 2.8.9 or better and Qt 5.
-Wayland and QtWayland are needed only for the greenisland submodule.
+In order to build the submodules you need CMake 2.8.9+, Qt 5 and,
+if you want to compile the **greenisland** module, both Wayland and
+QtWayland.  If you don't want to build **greenisland** just disable
+it with the --blacklist argument (see the *"Blacklist and whitelist"*
+chapter).
 
 If you are building under Maui there's no problem because it satisfies
 Hawaii requirements, but you might not be so lucky with other distributions.
 
 ### Building dependencies from sources
 
-Build CMake from sources, look at here:
-
-http://www.cmake.org/cmake/resources/software.html
+If you system doesn't support CMake 2.8.9+, take a look [here](http://www.cmake.org/cmake/resources/software.html).
 
 Read the following pages to build Qt 5 and Wayland from sources:
 
