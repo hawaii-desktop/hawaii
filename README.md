@@ -64,9 +64,6 @@ To see more information about fetch arguments:
 ./init-repository fetch -h
 ```
 
-Submodules that gets updated running this command will be rebuilt the next
-time you run the compile script.
-
 ### Update submodules
 
 Every time you want to update the submodules do:
@@ -80,6 +77,9 @@ To see more information about forward arguments:
 ```sh
 ./init-repository forward -h
 ```
+
+Submodules that gets updated running this command will be rebuilt the next
+time you run the compile script.
 
 ### Build the submodules
 
