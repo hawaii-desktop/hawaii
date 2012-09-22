@@ -77,6 +77,8 @@ To see more information about forward arguments:
 ./init-repository forward -h
 ```
 
+### Build the submodules
+
 The following command builds the software with default parameters, this means
 that the build type is RelWithDebInfo (release mode with debugging information)
 and everything gets installed under the Maui file hierarchy.
@@ -85,15 +87,50 @@ and everything gets installed under the Maui file hierarchy.
 ./compile
 ```
 
-Remember to properly configure your environment:
+Remember to properly configure your environment once you have done:
 
 ```sh
+# Save original environment variables
+export OLDPATH=$PATH
+export OLD_QT_PLUGIN_PATH=$QT_PLUGIN_PATH
+export OLD_QML_IMPORT_PATH=$QML_IMPORT_PATH
+export OLD_XDG_DATA_DIRS=$XDG_DATA_DIRS
+export OLD_LD_LIBRARY_PATH=$LD_LIBRARY_PATH
+
+# Change environment variables for Hawaii
 [ "$(uname -m)" = "x86_64" ] && libext=64 || libext=
 export PATH=/system/bin:$PATH
 export QT_PLUGIN_PATH=/system/plugins:$QT_PLUGIN_PATH
 export QML_IMPORT_PATH=/system/imports:$QML_IMPORT_PATH
 export XDG_DATA_DIRS=$XDG_DATA_DIRS:/system/data/
 export LD_LIBRARY_PATH=/system/lib${libext}:$LD_LIBRARY_PATH
+```
+
+You might not want to set the environment variables above permanently, you can
+put them into a separate file and load it when you want to use Hawaii and
+its applications.
+
+Copy the code above, paste it into ~/hawaiienv and then write a ~/hawaiiunenv
+with the following code:
+
+```sh
+export PATH=$OLD_PATH
+export QT_PLUGIN_PATH=$OLD_QT_PLUGIN_PATH
+export QML_IMPORT_PATH=$OLD_QML_IMPORT_PATH
+export XDG_DATA_DIRS=$OLD_XDG_DATA_DIRS
+export LD_LIBRARY_PATH=$OLD_LD_LIBRARY
+```
+
+When you want to use Hawaii and its applications just do:
+
+```sh
+source ~/hawaiienv
+```
+
+When you want to restore the environment variables to their original state:
+
+```sh
+source ~/hawaiiunenv
 ```
 
 What if you are not building under Maui?
@@ -114,9 +151,18 @@ Or you can just run compile like this:
 ./compile --prefix=/usr/local --linux-fhs
 ```
 
-Just like with a build for Maui, you need to properly set your environment:
+Just like with a build for Maui, you need to properly set your environment.
+The only difference here is that you have different paths:
 
 ```sh
+# Save original environment variables
+export OLDPATH=$PATH
+export OLD_QT_PLUGIN_PATH=$QT_PLUGIN_PATH
+export OLD_QML_IMPORT_PATH=$QML_IMPORT_PATH
+export OLD_XDG_DATA_DIRS=$XDG_DATA_DIRS
+export OLD_LD_LIBRARY_PATH=$LD_LIBRARY_PATH
+
+# Change environment variables for Hawaii
 [ "$(uname -m)" = "x86_64" ] && libext=64 || libext=
 export PATH=/usr/local/bin:$PATH
 export QT_PLUGIN_PATH=/usr/local/plugins:$QT_PLUGIN_PATH
