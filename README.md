@@ -163,12 +163,11 @@ export OLD_XDG_DATA_DIRS=$XDG_DATA_DIRS
 export OLD_LD_LIBRARY_PATH=$LD_LIBRARY_PATH
 
 # Change environment variables for Hawaii
-[ "$(uname -m)" = "x86_64" ] && libext=64 || libext=
 export PATH=/usr/local/bin:$PATH
 export QT_PLUGIN_PATH=/usr/local/plugins:$QT_PLUGIN_PATH
 export QML_IMPORT_PATH=/usr/local/imports:$QML_IMPORT_PATH
 export XDG_DATA_DIRS=$XDG_DATA_DIRS:/usr/local/share/
-export LD_LIBRARY_PATH=/usr/local/lib${libext}:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 ```
 
 Blacklist and whitelist
