@@ -2,6 +2,10 @@ language: cpp
 compiler:
   - gcc
 
+env:
+  - PATH=/opt/qt5/bin:$PATH
+  - LD_LIBRARY_PATH=/opt/qt5/lib:$LD_LIBRARY_PATH
+
 before_install:
   - yes | sudo add-apt-repository ppa:plfiorini/cmake
   - yes | sudo add-apt-repository ppa:canonical-qt5-edgers/qt5-daily
