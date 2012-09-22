@@ -64,6 +64,9 @@ To see more information about fetch arguments:
 ./init-repository fetch -h
 ```
 
+Submodules that gets updated running this command will be rebuilt the next
+time you run the compile script.
+
 ### Update submodules
 
 Every time you want to update the submodules do:
@@ -106,13 +109,22 @@ profiles are:
 Build time can be reduced if you have a multi-core or multi-processor system
 using the --jobs argument:
 
-```
+```sh
 ./compile --jobs 5
 ```
 
 Usually it's better not to exceed NCORES + 1 with the --jobs argument.
 
-Once you have done building remember to properly configure your environment:
+Remember that once submodules are built they won't be rebuilt automatically
+by subsequent launches of compile.  To force a rebuild run compile like this:
+
+```sh
+./compile --rebuild
+```
+
+### Post-installation
+
+Once you are done building remember to properly configure your environment:
 
 ```sh
 # Save original environment variables

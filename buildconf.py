@@ -1,3 +1,6 @@
+# File whose presence means the submodule was already built
+COOKIENAME = ".hawaii-ci-cookie"
+
 # Modules
 MODULES = [
 	"kde-extra-cmake-modules",

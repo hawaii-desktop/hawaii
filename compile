@@ -94,7 +94,6 @@ def build_module(module, args):
 
 	print "===> Building %s ..." % module
 
-	cookiename = ".hawaii-ci-cookie"
 	cmakeargs = parse_args(args)
 	moduledir = os.path.join(ROOT_DIR, module)
 	builddir = os.path.join(ROOT_DIR, "build")
@@ -103,7 +102,7 @@ def build_module(module, args):
 	retval = True
 
 	# Create the build directory if it's either not found or we're in rebuild mode
-	if not os.path.exists(os.path.join(workdir, cookiename)) or args.rebuild:
+	if not os.path.exists(os.path.join(workdir, COOKIENAME)) or args.rebuild:
 		if os.path.exists(workdir):
 			shutil.rmtree(workdir)
 		os.system("mkdir -p %s" % workdir)
@@ -127,7 +126,7 @@ def build_module(module, args):
 
 	if retval:
 		if args.verbose: print "Saving the cookie..."
-		if not exec_cmd("date > %s" % cookiename, workdir):
+		if not exec_cmd("date > %s" % COOKIENAME, workdir):
 			retval = False
 
 	os.chdir(origworkdir)

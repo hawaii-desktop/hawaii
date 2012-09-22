@@ -21,12 +21,15 @@ def fetch(args):
 
 def forward(args):
 	for module in args.submodules:
+		# Update the submodule
 		os.chdir(module)
 		os.system("git pull")
 		os.chdir("..")
 
-	if args.make:
-		os.system(os.path.join(ROOT_DIR, "compile"))
+		# This submodule needs a rebuild
+		cookiefilename = os.path.join(ROOT_DIR, "build", module, COOKIENAME)
+		if os.path.exists(cookiefilename):
+			os.path.unlink(cookiefilename)
 
 if __name__ == "__main__":
 	root_parser = argparse.ArgumentParser()
@@ -38,8 +41,7 @@ if __name__ == "__main__":
 
 	sp = sps.add_parser("forward", help="pull modules in each folder")
 	sp.add_argument("submodules", nargs='*', type=module)
-	sp.add_argument("--make", action='store_true')
-	sp.set_defaults(func=forward, submodules=MODULES, make=False)
+	sp.set_defaults(func=forward, submodules=MODULES)
 
 	args = root_parser.parse_args()
 	args.func(args)
