@@ -103,6 +103,15 @@ profiles are:
 * **RelWithDebInfo** (default): same as the **Release** mode with
   debugging symbols.
 
+Build time can be reduced if you have a multi-core or multi-processor system
+using the --jobs argument:
+
+```
+./compile --jobs 5
+```
+
+Usually it's better not to exceed NCORES + 1 with the --jobs argument.
+
 Once you have done building remember to properly configure your environment:
 
 ```sh

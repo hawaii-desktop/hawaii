@@ -36,7 +36,7 @@ def parse_args(args):
 	cmakeargs = []
 	for key in params.keys():
 		# Ignore arguments that are not related to the directories
-		if key in ("verbose", "rebuild", "linux_fhs", "blacklist", "whitelist"):
+		if key in ("verbose", "rebuild", "jobs", "linux_fhs", "blacklist", "whitelist"):
 			continue
 
 		# Append the argument if makes sense
@@ -114,7 +114,10 @@ def build_module(module, args):
 
 	if retval:
 		if args.verbose: print "Running make..."
-		if not exec_cmd("make", workdir):
+		makecmd = "make"
+		if args.jobs:
+			makecmd += " -j%d" % args.jobs
+		if not exec_cmd(makecmd, workdir):
 			retval = False
 
 	if retval:
@@ -140,6 +143,8 @@ if __name__ == "__main__":
 	parser.add_argument("--build-type", metavar="TYPE", type=str, nargs='?',
 		help="build type (possible values are Release, Debug and RelWithDebInfo)",
 		default="RelWithDebInfo")
+	parser.add_argument("--jobs", metavar="JOBS", type=int, nargs='?',
+		help="sets the number of parallel jobs, usually it's recommended not to exceed NCORES + 1")
 
 	parser.add_argument("--whitelist", metavar="MODULE", type=str, nargs='*',
 		help="build the module specified even if it's on the black list")
