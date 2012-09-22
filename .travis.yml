@@ -3,8 +3,7 @@ compiler:
   - gcc
 
 env:
-  - PATH=/opt/qt5/bin:/opt/hawaii/bin:$PATH
-  - LD_LIBRARY_PATH=/opt/qt5/lib:/opt/hawaii/lib:$LD_LIBRARY_PATH
+  - PATH=/opt/qt5/bin:/opt/hawaii/bin:$PATH LD_LIBRARY_PATH=/opt/qt5/lib:/opt/hawaii/lib:$LD_LIBRARY_PATH
 
 before_install:
   - yes | sudo add-apt-repository ppa:plfiorini/cmake
