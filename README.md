@@ -25,12 +25,8 @@ Building a module is a four step process:
 
  1. Run cmake to configure the submodule.
  2. Run make to compile the software.
- 3. Run sudo make install to install the software.
+ 3. Run make install to install the software.
  4. Create a cookie that indicates the submodule was already built.
-
-If you see a password prompt it's probably the installation step that
-is asking the password.  This might happen multiple times during the
-build process if the build time is greater than sudo timeout.
 
 Dependencies
 ------------
@@ -137,6 +133,13 @@ To see more information about compile arguments:
 ./compile -h
 ```
 
+After each submodule is built, compile will install running make install but
+if you don't have root privileges it won't work.  Run compile with sudo:
+
+```sh
+sudo ./compile
+```
+
 You can change the build profile With the --build-type argument, available
 profiles are:
 
@@ -150,7 +153,7 @@ Build time can be reduced if you have a multi-core or multi-processor system
 using the --jobs argument:
 
 ```sh
-./compile --jobs 5
+sudo ./compile --jobs 5
 ```
 
 Usually it's better not to exceed NCORES + 1 with the --jobs argument.
@@ -159,14 +162,14 @@ Remember that once submodules are built they won't be rebuilt automatically
 by subsequent launches of compile.  To force a rebuild run compile like this:
 
 ```sh
-./compile --rebuild
+sudo ./compile --rebuild
 ```
 
 You can also build only specific submodules and their dependencies, for example
 the following command will build vibe and its dependencies (kde-extra-cmake-modules and solid):
 
 ```sh
-./compile --module vibe
+sudo ./compile --module vibe
 ```
 
 ### Post-installation
@@ -232,7 +235,7 @@ Linux distribution you have to pass appropriate arguments:
 Or you can just run compile like this:
 
 ```sh
-./compile --prefix=/opt/hawaii --linux-fhs
+sudo ./compile --prefix=/opt/hawaii --linux-fhs
 ```
 
 Just like with a build for Maui, you need to properly set your environment.
@@ -260,6 +263,7 @@ export QT_PLUGIN_PATH=/opt/hawaii/plugins:$QT_PLUGIN_PATH
 export QML_IMPORT_PATH=/opt/hawaii/imports:$QML_IMPORT_PATH
 export XDG_DATA_DIRS=$XDG_DATA_DIRS:/opt/hawaii/share/
 export LD_LIBRARY_PATH=$libdir:$LD_LIBRARY_PATH
+export PKG_CONFIG_PATH=/opt/hawaii/lib/pkgconfig:$PKG_CONFIG_PATH
 ```
 
 Installing all the software under /opt/hawaii has the advantage that in order
@@ -277,7 +281,7 @@ default. We put kde-solid and vibe into the blacklist and override the
 default blacklist by placing icon-themes on the whitelist:
 
 ```sh
-./compile --blacklist kde-solid vibe --whitelist icon-themes
+sudo ./compile --blacklist kde-solid vibe --whitelist icon-themes
 ```
 
 If both --blacklist and --whitelist are passed, the latter takes

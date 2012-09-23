@@ -122,8 +122,8 @@ def build_module(module, args):
 				retval = False
 
 	if retval:
-		if args.verbose: print "Running sudo make install..."
-		if not exec_cmd("sudo make install", workdir):
+		if args.verbose: print "Running make install..."
+		if not exec_cmd("make install", workdir):
 			retval = False
 
 	if retval:
