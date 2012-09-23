@@ -47,10 +47,6 @@ def parse_args(args):
 			cmdname = "INSTALL_" + cmdname
 		cmakeargs.append("-DCMAKE_%s=%s" % (cmdname, params[key]))
 
-	# Set CMake prefix path with the specified path
-	if args.cmakedir:
-		cmakeargs.append("-DCMAKE_PREFIX_PATH=%s/%s" % (args.prefix, args.cmakedir))
-
 	return cmakeargs
 
 def exec_cmd(cmd, workdir):
