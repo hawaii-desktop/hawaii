@@ -13,10 +13,10 @@ def parse_args(args):
 	# for standard Linux distributions
 	if args.linux_fhs:
 		params.update({
-			"bindir": "bin",
+			"bindir": os.path.join(args.prefix, "bin"),
 			"appsdir": "share/applications",
-			"progsdir": "bin",
-			"serversdir": "bin",
+			"progsdir": os.path.join(args.prefix, "bin"),
+			"serversdir": os.path.join(args.prefix, "bin"),
 			"sysconfdir": "/etc",
 			"localstatedir": "/var",
 			"libdir": "lib",
