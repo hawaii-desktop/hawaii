@@ -1,13 +1,25 @@
 Hawaii Continuous Integration
 =============================
 
-Master module for the Hawaii desktop environment.
+Master repository for the Hawaii desktop environment.
 It contains git submodules for the whole desktop environment, something
 very useful for continuous integration that also make building from git
 easier.
 
 Introduction
 ------------
+
+The first time you check *hawaii* out you will notice that submodules
+are empty folders.  This is because the master repository is uninitialized.
+
+Remembmer that the master repository don't include the latest version of the
+submodules, just a pointer to the latest known working revision for each of them.
+
+More information in the next chapters.
+
+Read more about git submodules [here](http://git-scm.com/book/en/Git-Tools-Submodules).
+
+### A note on the build process
 
 Building a module is a four step process:
 
@@ -81,7 +93,18 @@ To see more information about fetch arguments:
 
 ### Update submodules
 
-Every time you want to update the submodules do:
+Just pull a new version of the master repository to get updates to both
+the init-repository and compile scripts and submodules:
+
+```sh
+git pull
+```
+
+### Forward submodules
+
+Every time you want to pull a new version of the submodules instead of using
+the one provided by the master repository make sure each submodule has the
+appropriate branch selected and do:
 
 ```sh
 ./init-repository forward
@@ -95,6 +118,8 @@ To see more information about forward arguments:
 
 Submodules that gets updated running this command will be rebuilt the next
 time you run the compile script.
+
+However most of you guys won't need to do this.
 
 ### Build the submodules
 
