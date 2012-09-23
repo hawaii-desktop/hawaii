@@ -20,7 +20,8 @@ Hawaii requirements, but you might not be so lucky with other distributions.
 
 ### Building dependencies from sources
 
-If you system doesn't support CMake 2.8.9+, take a look [here](http://www.cmake.org/cmake/resources/software.html).
+If your system doesn't support CMake 2.8.9+ take a look at [here](http://www.cmake.org/cmake/resources/software.html),
+download CMake sources, build and install it.
 
 Read the following pages to build Qt 5 and Wayland from sources:
 
