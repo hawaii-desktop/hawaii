@@ -12,7 +12,7 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq cmake qt5-meta-full
   # Install Vibe dependencies
-  - sudo apt-get install -qq libdconf-dev libbz2-dev liblzma-dev
+  - sudo apt-get install -qq libdconf-dev libdconf-dbus-1-dev libdbus-glib-1-dev libbz2-dev liblzma-dev
   # Fetch submodules
   - git submodule update --init --recursive
 
