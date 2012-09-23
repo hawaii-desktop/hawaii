@@ -19,7 +19,6 @@ def parse_args(args):
 			"serversdir": os.path.join(args.prefix, "bin"),
 			"sysconfdir": "/etc",
 			"localstatedir": "/var",
-			"libdir": os.path.join(args.prefix, "lib"),
 			"importsdir": os.path.join(args.prefix, "imports"),
 			"includedir": os.path.join(args.prefix, "include"),
 			"pkgconfigdir": os.path.join(args.prefix, "lib/pkgconfig"),
