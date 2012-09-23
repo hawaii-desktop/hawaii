@@ -23,7 +23,6 @@ MODULES = [
 IGNORED_MODULES = [
 	"widget-styles",
 	"loginmanager",
-	"eyesight",
 ]
 
 # Dependencies
