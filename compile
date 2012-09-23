@@ -36,7 +36,7 @@ def parse_args(args):
 	cmakeargs = []
 	for key in params.keys():
 		# Ignore arguments that are not related to the directories
-		if key in ("verbose", "rebuild", "jobs", "linux_fhs", "module", "blacklist", "whitelist"):
+		if not (key in ("prefix", "build_type") or key[-3:] == "dir"):
 			continue
 
 		# Append the argument if makes sense
