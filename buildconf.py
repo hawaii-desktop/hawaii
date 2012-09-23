@@ -30,7 +30,7 @@ IGNORED_MODULES = [
 # Dependencies
 DEPENDENCIES = {
 	"kde-extra-cmake-modules": "",
-	"kde-solid": "",
+	"kde-solid": "kde-extra-cmake-modules",
 	"vibe": "kde-solid",
 	"widget-styles": "vibe",
 	"icon-themes": "",
