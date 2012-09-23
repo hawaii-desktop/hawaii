@@ -247,16 +247,24 @@ export OLD_XDG_DATA_DIRS=$XDG_DATA_DIRS
 export OLD_LD_LIBRARY_PATH=$LD_LIBRARY_PATH
 
 # Change environment variables for Hawaii
+baselibdir=/opt/hawaii/lib
+libdir=$baselibdir
+[ "$(uname -m)" = "x86_64" ] && libdir=$libdir:${baselibdir}64
+if [ -f /etc/debian_version ]; then
+  DEB_HOST_MULTIARCH=$(dpkg-architecture -qDEB_HOST_MULTIARCH)
+  libdir=$libdir:${baselibdir}/$DEB_HOST_MULTIARCH
+fi
+
 export PATH=/opt/hawaii/bin:$PATH
 export QT_PLUGIN_PATH=/opt/hawaii/plugins:$QT_PLUGIN_PATH
 export QML_IMPORT_PATH=/opt/hawaii/imports:$QML_IMPORT_PATH
 export XDG_DATA_DIRS=$XDG_DATA_DIRS:/opt/hawaii/share/
-export LD_LIBRARY_PATH=/opt/hawaii/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$libdir:$LD_LIBRARY_PATH
 ```
 
 Installing all the software under /opt/hawaii has the advantage that in order
 to uninstall you can just remove the whole directory, but you can install in
-whatever path you want even /usr/local.
+whatever path you want, even /usr/local.
 
 Blacklist and whitelist
 -----------------------
