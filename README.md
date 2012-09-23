@@ -123,6 +123,13 @@ by subsequent launches of compile.  To force a rebuild run compile like this:
 ./compile --rebuild
 ```
 
+You can also build only specific submodules and their dependencies, for example
+the following command will build vibe and its dependencies (kde-extra-cmake-modules and solid):
+
+```sh
+./compile --module vibe
+```
+
 ### Post-installation
 
 Once you are done building remember to properly configure your environment:

@@ -36,7 +36,7 @@ def parse_args(args):
 	cmakeargs = []
 	for key in params.keys():
 		# Ignore arguments that are not related to the directories
-		if key in ("verbose", "rebuild", "jobs", "linux_fhs", "blacklist", "whitelist"):
+		if key in ("verbose", "rebuild", "jobs", "linux_fhs", "module", "blacklist", "whitelist"):
 			continue
 
 		# Append the argument if makes sense
@@ -71,7 +71,14 @@ def exec_cmd(cmd, workdir):
 	return True
 
 def build(args):
-	for module in MODULES:
+	modules = MODULES
+
+	# Override modules with the ones from the command line
+	if args.module:
+		modules = args.module
+
+	# Build all modules
+	for module in modules:
 		if not build_module(module, args):
 			return False
 	return True
@@ -145,6 +152,8 @@ if __name__ == "__main__":
 	parser.add_argument("--jobs", metavar="JOBS", type=int, nargs='?',
 		help="sets the number of parallel jobs, usually it's recommended not to exceed NCORES + 1")
 
+	parser.add_argument("--module", metavar="MODULE", type=str, nargs='*',
+		help="build a specific set of modules")
 	parser.add_argument("--whitelist", metavar="MODULE", type=str, nargs='*',
 		help="build the module specified even if it's on the black list")
 	parser.add_argument("--blacklist", metavar="MODULE", type=str, nargs='*',
