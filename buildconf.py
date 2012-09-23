@@ -21,7 +21,10 @@ MODULES = [
 
 # Ignore modules
 IGNORED_MODULES = [
-	"kde-solid",
+	"widget-styles",
+	"loginmanager",
+	"greenisland",
+	"eyesight",
 ]
 
 # Dependencies
