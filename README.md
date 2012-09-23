@@ -178,7 +178,7 @@ Maui has a different file hierarchy. If you are building for another
 Linux distribution you have to pass appropriate arguments:
 
 ```sh
-./compile --prefix=/usr/local --appsdir=share/applications --progsdir=bin \
+./compile --prefix=/opt/hawaii --appsdir=share/applications --progsdir=bin \
   --serversdir=bin --sysconfdir=/etc --localstatedir=/var --includedir=include \
   --pkgconfigdir=lib/pkgconfig --cmakedir=lib/cmake --datarootdir=share
 ```
@@ -186,7 +186,7 @@ Linux distribution you have to pass appropriate arguments:
 Or you can just run compile like this:
 
 ```sh
-./compile --prefix=/usr/local --linux-fhs
+./compile --prefix=/opt/hawaii --linux-fhs
 ```
 
 Just like with a build for Maui, you need to properly set your environment.
@@ -201,12 +201,16 @@ export OLD_XDG_DATA_DIRS=$XDG_DATA_DIRS
 export OLD_LD_LIBRARY_PATH=$LD_LIBRARY_PATH
 
 # Change environment variables for Hawaii
-export PATH=/usr/local/bin:$PATH
-export QT_PLUGIN_PATH=/usr/local/plugins:$QT_PLUGIN_PATH
-export QML_IMPORT_PATH=/usr/local/imports:$QML_IMPORT_PATH
-export XDG_DATA_DIRS=$XDG_DATA_DIRS:/usr/local/share/
-export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+export PATH=/opt/hawaii/bin:$PATH
+export QT_PLUGIN_PATH=/opt/hawaii/plugins:$QT_PLUGIN_PATH
+export QML_IMPORT_PATH=/opt/hawaii/imports:$QML_IMPORT_PATH
+export XDG_DATA_DIRS=$XDG_DATA_DIRS:/opt/hawaii/share/
+export LD_LIBRARY_PATH=/opt/hawaii/lib:$LD_LIBRARY_PATH
 ```
+
+Installing all the software under /opt/hawaii has the advantage that in order
+to uninstall you can just remove the whole directory, but you can install in
+whatever path you want even /usr/local.
 
 Blacklist and whitelist
 -----------------------
