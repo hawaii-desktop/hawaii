@@ -6,6 +6,20 @@ It contains git submodules for the whole desktop environment, something
 very useful for continuous integration that also make building from git
 easier.
 
+Introduction
+------------
+
+Building a module is a four step process:
+
+ 1. Run cmake to configure the submodule.
+ 2. Run make to compile the software.
+ 3. Run sudo make install to install the software.
+ 4. Create a cookie that indicates the submodule was already built.
+
+If you see a password prompt it's probably the installation step that
+is asking the password.  This might happen multiple times during the
+build process if the build time is greater than sudo timeout.
+
 Dependencies
 ------------
 
@@ -238,17 +252,3 @@ precedence.
 
 *Beware*, if you blacklist a submodule that is a dependency of another
 submodule the build might break.  There's no control, you have to be clever.
-
-Notes
------
-
-Building a module is a four step process:
-
- 1. Run cmake to configure the submodule.
- 2. Run make to compile the software.
- 3. Run sudo make install to install the software.
- 4. Create a cookie that indicates the submodule was already built.
-
-If you see a password prompt it's probably the installation step that
-is asking the password.  This might happen multiple times during the
-build process if the build time is greater than sudo timeout.
