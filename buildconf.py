@@ -45,3 +45,12 @@ DEPENDENCIES = {
 	"terminal": "vibe",
 	"widget-factory": "widget-styles",
 }
+
+# Protocols for GitHub repositories
+PROTOCOLS = ["http", "ssh"]
+
+# Base URLs for GitHub repositories
+BASE_URLS = {
+	"http": "https://github.com/",
+	"ssh": "git@github.com:",
+}

@@ -1,9 +1,17 @@
 #!/usr/bin/env python
 
-import argparse, os
+import argparse, sys, os
 from buildconf import *
 
 ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
+
+def gitconfig():
+	import subprocess
+	lines = []
+	proc = subprocess.Popen(["git", "config", "-l"], stdout=subprocess.PIPE)
+	for line in proc.stdout:
+		lines.append(line.rstrip())
+	return lines
 
 def module(string):
 	"""Argument parser type checker for module arguments"""
@@ -17,6 +25,29 @@ def fetch(args):
 	os.system("git submodule init " + " ".join(modules))
 	os.system("git config commit.template " + os.path.join(ROOT_DIR, ".commit-template"))
 	os.system("git submodule update " + " ".join(modules))
+
+def switch(args):
+	import re
+
+	old_base_url = BASE_URLS["ssh" if args.mode == "http" else "http"]
+	new_base_url = BASE_URLS[args.mode]
+
+	config = gitconfig()
+	for conf in config:
+		# Only handle configuration lines about submodules
+		m = re.search(r'submodule\.([^.=]+)\.url=(.*)', conf)
+		if not m:
+			continue
+
+		# Get submodule name and URL
+		key, value = m.groups()
+
+		# Switch to the new URL
+		if value[:len(old_base_url)]:
+			value = value.replace(old_base_url, new_base_url)
+			cmd = "git config submodule.%s.url %s" % (key, value)
+			print "+ %s" % cmd
+			os.system(cmd)
 
 def forward(args):
 	for module in args.submodules:
@@ -37,6 +68,11 @@ if __name__ == "__main__":
 	sp = sps.add_parser("fetch", help="initialize and check out submodules")
 	sp.add_argument("submodules", nargs='*', type=module)
 	sp.set_defaults(func=fetch, submodules=MODULES)
+
+	sp = sps.add_parser("switch", help="switch repository URL for GitHub repositories")
+	sp.add_argument("--http", dest="mode", action="store_const", const="http")
+	sp.add_argument("--ssh", dest="mode", action="store_const", const="ssh")
+	sp.set_defaults(func=switch, mode="http")
 
 	sp = sps.add_parser("forward", help="pull modules in each folder")
 	sp.add_argument("submodules", nargs='*', type=module)

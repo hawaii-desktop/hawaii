@@ -91,6 +91,25 @@ To see more information about fetch arguments:
 ./init-repository fetch -h
 ```
 
+### Change GitHub repositories URL
+
+You can switch between http and ssh for all the GitHub repositories.
+This is only useful for developers, in fact they usually prefer working with
+ssh because it doesn't ask for passwords when pushing the changes (it uses
+the ssh key).
+
+Switch to http typing this:
+
+```sh
+./init-repository switch --http
+```
+
+And switch to ssh with this command:
+
+```sh
+./init-repository switch --ssh
+```
+
 ### Update submodules
 
 Just pull a new version of the master repository to get updates to both
