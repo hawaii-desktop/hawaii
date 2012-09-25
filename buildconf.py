@@ -9,6 +9,8 @@ MODULES = [
 	"widget-styles",
 	"icon-themes",
 	"wallpapers",
+	"fluid",
+	"fluid-themes",
 	"loginmanager",
 	"greenisland",
 	"swordfish",
@@ -22,9 +24,6 @@ MODULES = [
 # Ignore modules
 IGNORED_MODULES = [
 	"widget-styles",
-	"loginmanager",
-	"fluid",
-	"fluid-themes",
 ]
 
 # Dependencies
@@ -32,13 +31,13 @@ DEPENDENCIES = {
 	"kde-extra-cmake-modules": "",
 	"kde-solid": "kde-extra-cmake-modules",
 	"vibe": "kde-solid",
-	"fluid": "vibe",
-	"fluid-themes": "fluid",
+	"fluid": "vibe,fluid-themes",
+	"fluid-themes": "",
 	"widget-styles": "vibe",
 	"icon-themes": "",
 	"wallpapers": "",
-	"loginmanager": "",
-	"greenisland": "vibe,wallpapers",
+	"loginmanager": "fluid",
+	"greenisland": "vibe,fluid,wallpapers",
 	"swordfish": "vibe",
 	"system-preferences": "vibe",
 	"archiver": "vibe",
