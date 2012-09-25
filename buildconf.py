@@ -23,6 +23,8 @@ MODULES = [
 IGNORED_MODULES = [
 	"widget-styles",
 	"loginmanager",
+	"fluid",
+	"fluid-themes",
 ]
 
 # Dependencies

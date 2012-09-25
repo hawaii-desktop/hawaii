@@ -40,3 +40,9 @@
 [submodule "archiver"]
 	path = archiver
 	url = https://github.com/hawaii-desktop/archiver.git
+[submodule "fluid"]
+	path = fluid
+	url = https://github.com/hawaii-desktop/fluid.git
+[submodule "fluid-themes"]
+	path = fluid-themes
+	url = https://github.com/hawaii-desktop/fluid-themes.git
