@@ -17,6 +17,8 @@ before_install:
   - sudo apt-get install -qq libdconf-dev libdconf-dbus-1-dev libdbus-glib-1-dev libbz2-dev liblzma-dev
   # Install Green Island dependencies
   - sudo apt-get install -qq libgles2-mesa-dev
+  # Install Login Manager dependencies
+  - sudo apt-get install -qq libpam0g-dev
   # Fetch submodules
   - git submodule update --init --recursive
 
