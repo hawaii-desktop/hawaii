@@ -32,6 +32,8 @@ DEPENDENCIES = {
 	"kde-extra-cmake-modules": "",
 	"kde-solid": "kde-extra-cmake-modules",
 	"vibe": "kde-solid",
+	"fluid": "vibe",
+	"fluid-themes": "fluid",
 	"widget-styles": "vibe",
 	"icon-themes": "",
 	"wallpapers": "",
