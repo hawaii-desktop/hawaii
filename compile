@@ -82,31 +82,42 @@ def build_module(module, args):
 	retval = True
 
 	# Create the build directory if it's either not found or we're in rebuild mode
-	if not os.path.exists(os.path.join(workdir, COOKIENAME)) or args.rebuild:
+	if not os.path.exists(os.path.join(workdir, COOKIENAME_CONFIGURE)) or args.rebuild:
+		# Create the working directory
 		if os.path.exists(workdir):
 			shutil.rmtree(workdir)
 		os.system("mkdir -p %s" % workdir)
 
+		# Configure the submodule
 		if args.verbose: print "Running cmake..."
 		if not exec_cmd("cmake %s %s" % (" ".join(cmakeargs), moduledir), workdir):
 			retval = False
 
+		# Save the cookie
 		if retval:
-			if args.verbose: print "Running make..."
-			makecmd = "make"
-			if args.jobs:
-				makecmd += " -j%d" % args.jobs
-			if not exec_cmd(makecmd, workdir):
+			if args.verbose: print "Saving the cookie..."
+			if not exec_cmd("date > %s" % COOKIENAME_CONFIGURE, workdir):
 				retval = False
 
 	if retval:
-		if args.verbose: print "Running sudo make install..."
-		if not exec_cmd("sudo make install", workdir):
+		# Build
+		if args.verbose: print "Running make..."
+		makecmd = "make"
+		if args.jobs:
+			makecmd += " -j%d" % args.jobs
+		if not exec_cmd(makecmd, workdir):
 			retval = False
 
+		# Save the cookie
+		if retval:
+			if args.verbose: print "Saving the cookie..."
+			if not exec_cmd("date > %s" % COOKIENAME_BUILD, workdir):
+				retval = False
+
 	if retval:
-		if args.verbose: print "Saving the cookie..."
-		if not exec_cmd("date > %s" % COOKIENAME, workdir):
+		# Install
+		if args.verbose: print "Running sudo make install..."
+		if not exec_cmd("sudo make install", workdir):
 			retval = False
 
 	os.chdir(origworkdir)

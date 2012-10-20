@@ -1,5 +1,8 @@
+# File whose presence means the submodule was already configured
+COOKIENAME_CONFIGURE = ".hawaii-ci-configure-cookie"
+
 # File whose presence means the submodule was already built
-COOKIENAME = ".hawaii-ci-cookie"
+COOKIENAME_BUILD = ".hawaii-ci-build-cookie"
 
 # Modules
 MODULES = [
