@@ -49,6 +49,12 @@ def switch(args):
 			print "+ %s" % cmd
 			os.system(cmd)
 
+			os.chdir(key)
+			cmd = "git remote set-url origin %s" % value
+			print "+ cd %s && %s" % (key, cmd)
+			os.system(cmd)
+			os.chdir("..")
+
 def forward(args):
 	for module in args.submodules:
 		# Update the submodule
