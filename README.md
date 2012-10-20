@@ -201,13 +201,24 @@ export OLD_XDG_DATA_DIRS=$XDG_DATA_DIRS
 export OLD_LD_LIBRARY_PATH=$LD_LIBRARY_PATH
 
 # Change environment variables for Hawaii
-[ "$(uname -m)" = "x86_64" ] && libext=64 || libext=
-export PATH=/system/bin:$PATH
-export QT_PLUGIN_PATH=/system/plugins:$QT_PLUGIN_PATH
-export QML_IMPORT_PATH=/system/imports:$QML_IMPORT_PATH
-export XDG_DATA_DIRS=$XDG_DATA_DIRS:/system/data/
-export LD_LIBRARY_PATH=/system/lib${libext}:$LD_LIBRARY_PATH
+baselibdir=/opt/hawaii/lib
+libdir=$baselibdir
+[ "$(uname -m)" = "x86_64" ] && libdir=$libdir:${baselibdir}64
+if [ -f /etc/debian_version ]; then
+  DEB_HOST_MULTIARCH=$(dpkg-architecture -qDEB_HOST_MULTIARCH)
+  libdir=$libdir:${baselibdir}/$DEB_HOST_MULTIARCH
+fi
+
+export PATH=/opt/hawaii/bin:$PATH
+export QT_PLUGIN_PATH=/opt/hawaii/plugins:$QT_PLUGIN_PATH
+export QML_IMPORT_PATH=/opt/hawaii/imports:$QML_IMPORT_PATH
+export XDG_DATA_DIRS=$XDG_DATA_DIRS:/opt/hawaii/share/
+export LD_LIBRARY_PATH=$libdir:$LD_LIBRARY_PATH
 ```
+
+Installing all the software under /opt/hawaii has the advantage that in order
+to uninstall you can just remove the whole directory, but you can install in
+whatever path you want, even /usr/local.
 
 You might not want to set the environment variables above permanently, you can
 put them into a separate file and load it when you want to use Hawaii and
@@ -235,55 +246,6 @@ When you want to restore the environment variables to their original state:
 ```sh
 source ~/hawaiiunenv
 ```
-
-What if you are not building under Maui?
-----------------------------------------
-
-Maui has a different file hierarchy. If you are building for another
-Linux distribution you have to pass appropriate arguments:
-
-```sh
-./compile --prefix=/opt/hawaii --appsdir=share/applications --progsdir=bin \
-  --serversdir=bin --sysconfdir=/etc --localstatedir=/var --includedir=include \
-  --pkgconfigdir=lib/pkgconfig --cmakedir=lib/cmake --datarootdir=share
-```
-
-Or you can just run compile like this:
-
-```sh
-./compile --prefix=/opt/hawaii --linux-fhs
-```
-
-Just like with a build for Maui, you need to properly set your environment.
-The only difference here is that you have different paths:
-
-```sh
-# Save original environment variables
-export OLDPATH=$PATH
-export OLD_QT_PLUGIN_PATH=$QT_PLUGIN_PATH
-export OLD_QML_IMPORT_PATH=$QML_IMPORT_PATH
-export OLD_XDG_DATA_DIRS=$XDG_DATA_DIRS
-export OLD_LD_LIBRARY_PATH=$LD_LIBRARY_PATH
-
-# Change environment variables for Hawaii
-baselibdir=/opt/hawaii/lib
-libdir=$baselibdir
-[ "$(uname -m)" = "x86_64" ] && libdir=$libdir:${baselibdir}64
-if [ -f /etc/debian_version ]; then
-  DEB_HOST_MULTIARCH=$(dpkg-architecture -qDEB_HOST_MULTIARCH)
-  libdir=$libdir:${baselibdir}/$DEB_HOST_MULTIARCH
-fi
-
-export PATH=/opt/hawaii/bin:$PATH
-export QT_PLUGIN_PATH=/opt/hawaii/plugins:$QT_PLUGIN_PATH
-export QML_IMPORT_PATH=/opt/hawaii/imports:$QML_IMPORT_PATH
-export XDG_DATA_DIRS=$XDG_DATA_DIRS:/opt/hawaii/share/
-export LD_LIBRARY_PATH=$libdir:$LD_LIBRARY_PATH
-```
-
-Installing all the software under /opt/hawaii has the advantage that in order
-to uninstall you can just remove the whole directory, but you can install in
-whatever path you want, even /usr/local.
 
 Blacklist and whitelist
 -----------------------

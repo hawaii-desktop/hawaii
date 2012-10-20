@@ -9,33 +9,11 @@ def parse_args(args):
 	# Convert arguments to a dictionary
 	params = vars(args)
 
-	# If --linux-fhs was passed we set the directory arguments with defaults
-	# for standard Linux distributions
-	if args.linux_fhs:
-		params.update({
-			"bindir": os.path.join(args.prefix, "bin"),
-			"appsdir": os.path.join(args.prefix, "share/applications"),
-			"progsdir": os.path.join(args.prefix, "bin"),
-			"serversdir": os.path.join(args.prefix, "bin"),
-			"sysconfdir": "/etc",
-			"localstatedir": "/var",
-			"importsdir": os.path.join(args.prefix, "imports"),
-			"includedir": os.path.join(args.prefix, "include"),
-			"pkgconfigdir": os.path.join(args.prefix, "lib/pkgconfig"),
-			"cmakedir": os.path.join(args.prefix, "lib/cmake"),
-			"datarootdir": os.path.join(args.prefix, "share"),
-			"datadir": None,
-			"docdir": None,
-			"infodir": None,
-			"mandir": None,
-			"localedir": None
-		})
-
 	# CMake arguments from parameters
 	cmakeargs = []
 	for key in params.keys():
-		# Ignore arguments that are not related to the directories
-		if not (key in ("prefix", "build_type") or key[-3:] == "dir"):
+		# Ignore arguments that we are not interested in
+		if key not in ("prefix", "build_type"):
 			continue
 
 		# Append the argument if makes sense
@@ -146,55 +124,14 @@ if __name__ == "__main__":
 		default="RelWithDebInfo")
 	parser.add_argument("--jobs", metavar="JOBS", type=int, nargs='?',
 		help="sets the number of parallel jobs, usually it's recommended not to exceed NCORES + 1")
-
 	parser.add_argument("--module", metavar="MODULE", type=str, nargs='*',
 		help="build a specific set of modules")
 	parser.add_argument("--whitelist", metavar="MODULE", type=str, nargs='*',
 		help="build the module specified even if it's on the black list")
 	parser.add_argument("--blacklist", metavar="MODULE", type=str, nargs='*',
 		help="don't build the module specified by placing it on the black list")
-
-	parser.add_argument("--linux-fhs", action="store_true",
-		help="install software using Linux FHS")
-
 	parser.add_argument("--prefix", metavar="PATH", type=str, nargs='?',
-		help="installation prefix", default="/system")
-	parser.add_argument("--bindir", metavar="PATH", type=str, nargs='?',
-		help="binaries directory")
-	parser.add_argument("--appsdir", metavar="PATH", type=str, nargs='?',
-		help="desktop files directory")
-	parser.add_argument("--progsdir", metavar="PATH", type=str, nargs='?',
-		help="programs directory")
-	parser.add_argument("--serversdir", metavar="PATH", type=str, nargs='?',
-		help="server executables directory")
-	parser.add_argument("--sysconfdir", metavar="PATH", type=str, nargs='?',
-		help="system configuration directory")
-	parser.add_argument("--localstatedir", metavar="PATH", type=str, nargs='?',
-		help="modifiable single-machine data")
-	parser.add_argument("--libdir", metavar="PATH", type=str, nargs='?',
-		help="libraries directory")
-	parser.add_argument("--pluginsdir", metavar="PATH", type=str, nargs='?',
-		help="plugins directory")
-	parser.add_argument("--importsdir", metavar="PATH", type=str, nargs='?',
-		help="imports directory")
-	parser.add_argument("--includedir", metavar="PATH", type=str, nargs='?',
-		help="header files directory")
-	parser.add_argument("--pkgconfigdir", metavar="PATH", type=str, nargs='?',
-		help="pkg-config directory")
-	parser.add_argument("--cmakedir", metavar="PATH", type=str, nargs='?',
-		help="cmake directory")
-	parser.add_argument("--datarootdir", metavar="PATH", type=str, nargs='?',
-		help="data root directory")
-	parser.add_argument("--datadir", metavar="PATH", type=str, nargs='?',
-		help="data directory")
-	parser.add_argument("--docdir", metavar="PATH", type=str, nargs='?',
-		help="documentation directory")
-	parser.add_argument("--infodir", metavar="PATH", type=str, nargs='?',
-		help="info directory")
-	parser.add_argument("--mandir", metavar="PATH", type=str, nargs='?',
-		help="man directory")
-	parser.add_argument("--localedir", metavar="PATH", type=str, nargs='?',
-		help="locale directory")
+		help="installation prefix", default="/opt/hawaii")
 
 	args = parser.parse_args()
 	if not build(args):
