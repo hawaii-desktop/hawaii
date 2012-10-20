@@ -22,7 +22,7 @@ before_install:
   # Fetch submodules
   - git submodule update --init --recursive
 
-script: "./compile --prefix=/opt/hawaii --linux-fhs"
+script: "./compile --prefix=/opt/hawaii"
 
 branches:
   only:
