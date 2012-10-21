@@ -6,6 +6,8 @@ It contains git submodules for the whole desktop environment, something
 very useful for continuous integration that also make building from git
 easier.
 
+[![Build Status](https://secure.travis-ci.org/hawaii-desktop/hawaii.png)](http://travis-ci.org/hawaii-desktop/hawaii)
+
 Introduction
 ------------
 
