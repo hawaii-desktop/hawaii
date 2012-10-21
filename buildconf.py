@@ -26,7 +26,6 @@ MODULES = [
 
 # Ignore modules
 IGNORED_MODULES = [
-	"widget-styles",
 ]
 
 # Dependencies
