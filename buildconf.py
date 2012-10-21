@@ -35,7 +35,7 @@ DEPENDENCIES = {
 	"vibe": "kde-solid",
 	"fluid": "vibe,fluid-themes",
 	"fluid-themes": "",
-	"widget-styles": "vibe",
+	"widget-styles": "vibe,fluid",
 	"icon-themes": "",
 	"wallpapers": "",
 	"loginmanager": "fluid",
