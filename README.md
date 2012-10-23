@@ -252,6 +252,14 @@ When you want to restore the environment variables to their original state:
 source ~/hawaiiunenv
 ```
 
+**NOTE:** Remember that the above instructions only take into account Hawaii
+and assume that all the external dependencies were previously installed
+into the standard locations.
+
+If you have installed any of the external dependencies (such as CMake, Mesa,
+Wayland or Qt5) in a non-standard location you have to change the above
+instruction accordingly.
+
 A note for developers
 ---------------------
 
