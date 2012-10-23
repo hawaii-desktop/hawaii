@@ -152,6 +152,7 @@ the init-repository and compile scripts and submodules:
 
 ```sh
 git pull
+git submodule update
 ```
 
 ### Forward submodules
