@@ -249,6 +249,31 @@ When you want to restore the environment variables to their original state:
 source ~/hawaiiunenv
 ```
 
+A note for developers
+---------------------
+
+The init_repository script fetches all submodules to a known good revision,
+which might be behind the master branch.
+
+Developers need to checkout the master branch before making any changes.
+
+This is done by typing a simple git command, for the sake of this example
+we assume you want to make contributions to the *greenisland* submodule:
+
+```sh
+cd greenisland
+git checkout master
+```
+
+If you have commit access you might want to switch the origin URLs to
+ssh:
+
+```sh
+./init_repository switch --ssh
+```
+
+See "Change GitHub repositories URL" for more information.
+
 Blacklist and whitelist
 -----------------------
 
