@@ -91,7 +91,7 @@ SigLevel = TrustAll
 Now install all the external dependencies:
 
 ```
-pacman -Syu qt5-qtwayland-git qt5-qtsvg-git qt5-qtimageformats-git qt5-qtmultimedia-git qt5-qttools-git qt5-qt3d-git
+pacman -Syu qt5-qtwayland-git qt5-qtsvg-git qt5-qtimageformats-git qt5-qtmultimedia-git qt5-qttools-git qt5-qt3d-git qt5-qtgraphicaleffects-git
 ```
 
 These packages install:
