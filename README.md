@@ -46,7 +46,7 @@ chapter).
 If you are building under Maui there's no problem because it satisfies
 Hawaii requirements, but you might not be so lucky with other distributions.
 
-### Building dependencies from sources
+### Build external dependencies from sources
 
 If your system doesn't support CMake 2.8.9+ take a look at [here](http://www.cmake.org/cmake/resources/software.html),
 download CMake sources, build and install it.
@@ -74,6 +74,38 @@ sudo apt-get install cmake
 There's also a PPA for Qt 5 maintained by Canonical:
 
 https://launchpad.net/~canonical-qt5-edgers/+archive/qt5-daily
+
+### Install dependencies on Arch Linux
+
+An Arch Linux repository for x86_64 have been made.
+It contains both external dependencies (Wayland, libxkbcommon, Mesa, Qt5, ...)
+and the Hawaii desktop environment.
+
+If you are going to build Hawaii from git using the tools provided by this
+repository you would only install the external dependencies.
+
+For starters, add the following to your /etc/pacman.conf:
+
+```
+[hawaii]
+Server = http://archive.maui-project.org/hawaii/os/x86_64
+SigLevel = TrustAll
+```
+
+Now install all the external dependencies:
+
+```
+pacman -Syu qt5-qtwayland-git qt5-qtsvg-git qt5-qtimageformats-git qt5-qtmultimedia-git qt5-qttools-git qt5-qt3d-git
+```
+
+These packages install:
+
+ * Wayland, Mesa and libxkbcommon in /usr
+ * Qt5 in /opt/qt5
+
+Since /opt/qt5 is not a standard path like /usr, chanced are that its libraries and executables
+won't be found by the system. You need to add this path during the post-installation, see
+"Post-installation".
 
 How to use it
 -------------
