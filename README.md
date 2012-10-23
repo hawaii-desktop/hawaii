@@ -99,9 +99,14 @@ These packages install:
  * Wayland, Mesa and libxkbcommon in /usr
  * Qt5 in /opt/qt5
 
-Since /opt/qt5 is not a standard path like /usr, chanced are that its libraries and executables
-won't be found by the system. You need to add this path during the post-installation, see
-"Post-installation".
+As you can see, Qt5 is installed in a non standard location to avoid to interfere with your existing
+installation.
+
+Add it to your path before building Hawaii:
+
+```sh
+export PATH=/opt/qt5/bin:$PATH
+```
 
 How to use it
 -------------
