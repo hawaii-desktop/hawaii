@@ -56,10 +56,6 @@ Read the following pages to build Qt 5 and Wayland from sources:
 * http://wayland.freedesktop.org/building.html
 * http://qt-project.org/wiki/Building_Qt_5_from_Git
 
-Some guidance can be found here:
-
-http://www.maui-project.org/en/get-involved/coding/
-
 ### Install dependencies on Ubuntu
 
 CMake 2.8.9 was backported from Quantal to Precise by Pier Luigi Fiorini.
