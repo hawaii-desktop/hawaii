@@ -37,7 +37,7 @@ DEPENDENCIES = {
 	"fluid-themes": "",
 	"widget-styles": "vibe,fluid",
 	"icon-themes": "",
-	"wallpapers": "",
+	"wallpapers": "vibe",
 	"loginmanager": "fluid",
 	"greenisland": "vibe,fluid,wallpapers",
 	"swordfish": "vibe",
