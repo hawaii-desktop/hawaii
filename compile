@@ -50,6 +50,22 @@ def build(args):
     if args.module:
         modules = args.module
 
+    # Check whether all modules exists
+    status = True
+    for m in modules:
+        if m not in MODULES:
+            print >>sys.stderr, "Unknown '%s' submodule!" % m
+            status = False
+        elif os.path.exists(m):
+            if not os.path.isdir(m):
+                print >>sys.stderr, "Something is wrong with your setup, '%s' exists but it's not a directory" % m
+                status = False
+        else:
+            print >>sys.stderr, "The '%s' submodule wasn't checked out, run ./init-repository fetch!" % m
+            status = False
+    if not status:
+        return False
+
     # Build all modules
     for module in modules:
         if not build_module(module, args):
