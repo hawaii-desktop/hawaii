@@ -5,6 +5,31 @@ from buildconf import *
 
 ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
 
+class Module:
+    def __init__(self, name):
+        self._name = name
+        self._deps = []
+
+    @property
+    def name(self):
+        return self._name
+
+    @property
+    def dependencies(self):
+        return tuple(self._deps)
+
+    def add_dependency(self, mod):
+        self._deps.append(mod)
+
+    def __str__(self):
+        return self._name
+
+    def __unicode__(self):
+        return self._name
+
+    def __repr__(self):
+        return "<Module:%s>" % self._name
+
 def parse_args(args):
     # Convert arguments to a dictionary
     params = vars(args)
@@ -43,16 +68,41 @@ def exec_cmd(cmd, workdir):
 
     return True
 
+# From http://www.electricmonk.nl/log/2008/08/07/dependency-resolving-algorithm/
+def resolve_deps(mod, resolved, unresolved):
+    unresolved.append(mod)
+    for dep in mod.dependencies:
+        if dep not in resolved:
+            if dep in unresolved:
+                raise Exception("Circular dependency detected: %s -> %s'" % (mod.name, dep.name))
+            resolve_deps(dep, resolved, unresolved)
+    resolved.append(mod)
+    unresolved.remove(mod)
+
+def determine_modules(moduleslist):
+    """Create a dictionary of Modules."""
+    modules = {}
+
+    for m in MODULES:
+        modules[m] = Module(m)
+
+    for k in modules.keys():
+        dependencies = DEPENDENCIES[k].split(',') if DEPENDENCIES[k] else None
+        if dependencies:
+            for dependency in dependencies:
+                modules[k].add_dependency(modules[dependency])
+    return modules
+
 def build(args):
-    modules = MODULES
+    moduleslist = MODULES
 
     # Override modules with the ones from the command line
     if args.module:
-        modules = args.module
+        moduleslist = args.module
 
     # Check whether all modules exists
     status = True
-    for m in modules:
+    for m in moduleslist:
         if m not in MODULES:
             print >>sys.stderr, "Unknown '%s' submodule!" % m
             status = False
@@ -66,9 +116,21 @@ def build(args):
     if not status:
         return False
 
+    # Determine modules and dependencies
+    modules = determine_modules(moduleslist)
+
+    # Resolve dependencies
+    resolved = []
+    unresolved = []
+    for k in modules.keys():
+        resolve_deps(modules[k], resolved, unresolved)
+    print "\n\n== Building the following modules:"
+    for mod in resolved:
+        print "\t%s" % mod.name
+
     # Build all modules
-    for module in modules:
-        if not build_module(module, args):
+    for mod in resolved:
+        if not build_module(mod, args):
             return False
     return True
 
@@ -77,23 +139,17 @@ def build_module(module, args):
     blacklist = args.blacklist if args.blacklist else []
     whitelist = args.whitelist if args.whitelist else []
     blacklist = list(set(IGNORED_MODULES + blacklist) - set(whitelist))
-    if module in blacklist:
+    if module.name in blacklist:
         return True
-
-    # Build dependencies recursively
-    dependencies = DEPENDENCIES[module].split(',') if DEPENDENCIES[module] else None
-    if dependencies:
-        for dependency in dependencies:
-            build_module(dependency, args)
 
     import shutil
 
-    print "===> Building %s ..." % module
+    print "===> Building %s ..." % module.name
 
     cmakeargs = parse_args(args)
-    moduledir = os.path.join(ROOT_DIR, module)
+    moduledir = os.path.join(ROOT_DIR, module.name)
     builddir = os.path.join(ROOT_DIR, "build")
-    workdir = os.path.join(builddir, module)
+    workdir = os.path.join(builddir, module.name)
     origworkdir = os.getcwd()
     retval = True
 
