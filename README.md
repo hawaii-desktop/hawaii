@@ -84,14 +84,20 @@ For starters, add the following to your /etc/pacman.conf:
 
 ```
 [hawaii]
-Server = http://archive.maui-project.org/hawaii/os/x86_64
+Server = http://archive.maui-project.org/archlinux/$repo/os/$arch
 SigLevel = TrustAll
 ```
 
 Now install all the external dependencies:
 
-```
+```sh
 pacman -Syu qt5-qtbase-for-hawaii-git qt5-qtwayland-git qt5-qtsvg-git qt5-qtimageformats-git qt5-qtmultimedia-git qt5-qttools-git qt5-qt3d-git qt5-qtgraphicaleffects-git
+```
+
+If you want to develop with QtCreator you will also need to install its package:
+
+```sh
+pacman -Syu qtcreator-for-qt5-git
 ```
 
 These packages install:
