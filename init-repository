@@ -6,85 +6,85 @@ from buildconf import *
 ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
 
 def gitconfig():
-	import subprocess
-	lines = []
-	proc = subprocess.Popen(["git", "config", "-l"], stdout=subprocess.PIPE)
-	for line in proc.stdout:
-		lines.append(line.rstrip())
-	return lines
+    import subprocess
+    lines = []
+    proc = subprocess.Popen(["git", "config", "-l"], stdout=subprocess.PIPE)
+    for line in proc.stdout:
+        lines.append(line.rstrip())
+    return lines
 
 def module(string):
-	"""Argument parser type checker for module arguments"""
-	if string in MODULES:
-		return string
+    """Argument parser type checker for module arguments"""
+    if string in MODULES:
+        return string
 
-	raise argparse.ArgumentTypeError("No such module '%s'" % string)
+    raise argparse.ArgumentTypeError("No such module '%s'" % string)
 
 def fetch(args):
-	modules = args.submodules
-	os.system("git submodule init " + " ".join(modules))
-	os.system("git config commit.template " + os.path.join(ROOT_DIR, ".commit-template"))
-	os.system("git submodule update " + " ".join(modules))
+    modules = args.submodules
+    os.system("git submodule init " + " ".join(modules))
+    os.system("git config commit.template " + os.path.join(ROOT_DIR, ".commit-template"))
+    os.system("git submodule update " + " ".join(modules))
 
 def switch(args):
-	import re
+    import re
 
-	old_base_url = BASE_URLS["ssh" if args.mode == "http" else "http"]
-	new_base_url = BASE_URLS[args.mode]
+    old_base_url = BASE_URLS["ssh" if args.mode == "http" else "http"]
+    new_base_url = BASE_URLS[args.mode]
 
-	config = gitconfig()
-	for conf in config:
-		# Only handle configuration lines about submodules
-		m = re.search(r'submodule\.([^.=]+)\.url=(.*)', conf)
-		if not m:
-			continue
+    config = gitconfig()
+    for conf in config:
+        # Only handle configuration lines about submodules
+        m = re.search(r'submodule\.([^.=]+)\.url=(.*)', conf)
+        if not m:
+            continue
 
-		# Get submodule name and URL
-		key, value = m.groups()
+        # Get submodule name and URL
+        key, value = m.groups()
 
-		# Switch to the new URL
-		if value[:len(old_base_url)]:
-			value = value.replace(old_base_url, new_base_url)
-			cmd = "git config submodule.%s.url %s" % (key, value)
-			print "+ %s" % cmd
-			os.system(cmd)
+        # Switch to the new URL
+        if value[:len(old_base_url)]:
+            value = value.replace(old_base_url, new_base_url)
+            cmd = "git config submodule.%s.url %s" % (key, value)
+            print "+ %s" % cmd
+            os.system(cmd)
 
-			os.chdir(key)
-			cmd = "git remote set-url origin %s" % value
-			print "+ cd %s && %s" % (key, cmd)
-			os.system(cmd)
-			os.chdir("..")
+            os.chdir(key)
+            cmd = "git remote set-url origin %s" % value
+            print "+ cd %s && %s" % (key, cmd)
+            os.system(cmd)
+            os.chdir("..")
 
 def forward(args):
-	for module in args.submodules:
-		# Update the submodule
-		os.chdir(module)
-		os.system("git pull")
-		os.chdir("..")
+    for module in args.submodules:
+        # Update the submodule
+        os.chdir(module)
+        os.system("git pull")
+        os.chdir("..")
 
-		# This submodule needs a rebuild
-		cookiefilename = os.path.join(ROOT_DIR, "build", module, COOKIENAME)
-		if os.path.exists(cookiefilename):
-			os.path.unlink(cookiefilename)
+        # This submodule needs a rebuild
+        cookiefilename = os.path.join(ROOT_DIR, "build", module, COOKIENAME)
+        if os.path.exists(cookiefilename):
+            os.path.unlink(cookiefilename)
 
 if __name__ == "__main__":
-	root_parser = argparse.ArgumentParser()
-	sps = root_parser.add_subparsers()
+    root_parser = argparse.ArgumentParser()
+    sps = root_parser.add_subparsers()
 
-	sp = sps.add_parser("fetch", help="initialize and check out submodules")
-	sp.add_argument("submodules", nargs='*', type=module)
-	sp.set_defaults(func=fetch, submodules=MODULES)
+    sp = sps.add_parser("fetch", help="initialize and check out submodules")
+    sp.add_argument("submodules", nargs='*', type=module)
+    sp.set_defaults(func=fetch, submodules=MODULES)
 
-	sp = sps.add_parser("switch", help="switch repository URL for GitHub repositories")
-	sp.add_argument("--http", dest="mode", action="store_const", const="http")
-	sp.add_argument("--ssh", dest="mode", action="store_const", const="ssh")
-	sp.set_defaults(func=switch, mode="http")
+    sp = sps.add_parser("switch", help="switch repository URL for GitHub repositories")
+    sp.add_argument("--http", dest="mode", action="store_const", const="http")
+    sp.add_argument("--ssh", dest="mode", action="store_const", const="ssh")
+    sp.set_defaults(func=switch, mode="http")
 
-	sp = sps.add_parser("forward", help="pull modules in each folder")
-	sp.add_argument("submodules", nargs='*', type=module)
-	sp.set_defaults(func=forward, submodules=MODULES)
+    sp = sps.add_parser("forward", help="pull modules in each folder")
+    sp.add_argument("submodules", nargs='*', type=module)
+    sp.set_defaults(func=forward, submodules=MODULES)
 
-	args = root_parser.parse_args()
-	args.func(args)
+    args = root_parser.parse_args()
+    args.func(args)
 
 # vim:set ts=4 sw=4 et:

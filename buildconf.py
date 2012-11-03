@@ -6,22 +6,22 @@ COOKIENAME_BUILD = ".hawaii-ci-build-cookie"
 
 # Modules
 MODULES = [
-	"kde-extra-cmake-modules",
-	"kde-solid",
-	"vibe",
-	"widget-styles",
-	"icon-themes",
-	"wallpapers",
-	"fluid",
-	"fluid-themes",
-	"loginmanager",
-	"greenisland",
-	"swordfish",
-	"system-preferences",
-	"archiver",
-	"eyesight",
-	"terminal",
-	"widget-factory",
+    "kde-extra-cmake-modules",
+    "kde-solid",
+    "vibe",
+    "widget-styles",
+    "icon-themes",
+    "wallpapers",
+    "fluid",
+    "fluid-themes",
+    "loginmanager",
+    "greenisland",
+    "swordfish",
+    "system-preferences",
+    "archiver",
+    "eyesight",
+    "terminal",
+    "widget-factory",
 ]
 
 # Ignore modules
@@ -30,22 +30,22 @@ IGNORED_MODULES = [
 
 # Dependencies
 DEPENDENCIES = {
-	"kde-extra-cmake-modules": "",
-	"kde-solid": "kde-extra-cmake-modules",
-	"vibe": "kde-solid",
-	"fluid": "vibe,fluid-themes",
-	"fluid-themes": "",
-	"widget-styles": "vibe,fluid",
-	"icon-themes": "",
-	"wallpapers": "vibe",
-	"loginmanager": "fluid",
-	"greenisland": "vibe,fluid,wallpapers",
-	"swordfish": "vibe",
-	"system-preferences": "vibe",
-	"archiver": "vibe",
-	"eyesight": "vibe",
-	"terminal": "vibe",
-	"widget-factory": "widget-styles",
+    "kde-extra-cmake-modules": "",
+    "kde-solid": "kde-extra-cmake-modules",
+    "vibe": "kde-solid",
+    "fluid": "vibe,fluid-themes",
+    "fluid-themes": "",
+    "widget-styles": "vibe,fluid",
+    "icon-themes": "",
+    "wallpapers": "vibe",
+    "loginmanager": "fluid",
+    "greenisland": "vibe,fluid,wallpapers",
+    "swordfish": "vibe",
+    "system-preferences": "vibe",
+    "archiver": "vibe",
+    "eyesight": "vibe",
+    "terminal": "vibe",
+    "widget-factory": "widget-styles",
 }
 
 # Protocols for GitHub repositories
@@ -53,6 +53,8 @@ PROTOCOLS = ["http", "ssh"]
 
 # Base URLs for GitHub repositories
 BASE_URLS = {
-	"http": "https://github.com/",
-	"ssh": "git@github.com:",
+    "http": "https://github.com/",
+    "ssh": "git@github.com:",
 }
+
+# vim:set ts=4 sw=4 et:
