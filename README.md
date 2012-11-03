@@ -114,7 +114,7 @@ Add it to your path before building Hawaii:
 export PATH=/opt/qt5/bin:$PATH
 ```
 
-Arch Linux users also need to add /opt/qt5/lib to LD_LIBRARY_PATH during the post-installation.
+Arch Linux users also need to add /opt/qt5/lib to LD_LIBRARY_PATH during the post-installation phase.
 See the [Post-installation](#post-installation) section.
 
 How to use it
