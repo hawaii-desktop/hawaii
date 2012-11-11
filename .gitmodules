@@ -19,9 +19,9 @@
 [submodule "widget-factory"]
 	path = widget-factory
 	url = https://github.com/hawaii-desktop/widget-factory.git
-[submodule "loginmanager"]
-	path = loginmanager
-	url = https://github.com/hawaii-desktop/loginmanager.git
+[submodule "login-manager"]
+	path = login-manager
+	url = https://github.com/hawaii-desktop/login-manager.git
 [submodule "greenisland"]
 	path = greenisland
 	url = https://github.com/hawaii-desktop/greenisland.git
