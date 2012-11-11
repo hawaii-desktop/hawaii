@@ -46,3 +46,6 @@
 [submodule "fluid-themes"]
 	path = fluid-themes
 	url = https://github.com/hawaii-desktop/fluid-themes.git
+[submodule "notifications-daemon"]
+	path = notifications-daemon
+	url = https://github.com/hawaii-desktop/notifications-daemon.git
