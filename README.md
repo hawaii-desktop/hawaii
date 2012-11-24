@@ -241,7 +241,7 @@ Once you are done building remember to properly configure your environment:
 # Save original environment variables
 export OLDPATH=$PATH
 export OLD_QT_PLUGIN_PATH=$QT_PLUGIN_PATH
-export OLD_QML_IMPORT_PATH=$QML_IMPORT_PATH
+export OLD_QML2_IMPORT_PATH=$QML2_IMPORT_PATH
 export OLD_XDG_DATA_DIRS=$XDG_DATA_DIRS
 export OLD_LD_LIBRARY_PATH=$LD_LIBRARY_PATH
 export OLD_DESKTOP_SESSION=$DESKTOP_SESSION
@@ -257,7 +257,7 @@ fi
 
 export PATH=/opt/hawaii/bin:$PATH
 export QT_PLUGIN_PATH=/opt/hawaii/plugins:$QT_PLUGIN_PATH
-export QML_IMPORT_PATH=/opt/hawaii/imports:$QML_IMPORT_PATH
+export QML2_IMPORT_PATH=/opt/hawaii/qml:$QML2_IMPORT_PATH
 export XDG_DATA_DIRS=$XDG_DATA_DIRS:/opt/hawaii/share/
 export LD_LIBRARY_PATH=$libdir:$LD_LIBRARY_PATH
 export DESKTOP_SESSION=hawaii
@@ -277,7 +277,7 @@ with the following code:
 ```sh
 export PATH=$OLD_PATH
 export QT_PLUGIN_PATH=$OLD_QT_PLUGIN_PATH
-export QML_IMPORT_PATH=$OLD_QML_IMPORT_PATH
+export QML2_IMPORT_PATH=$OLD_QML2_IMPORT_PATH
 export XDG_DATA_DIRS=$OLD_XDG_DATA_DIRS
 export LD_LIBRARY_PATH=$OLD_LD_LIBRARY
 export DESKTOP_SESSION=$OLD_DESKTOP_SESSION
