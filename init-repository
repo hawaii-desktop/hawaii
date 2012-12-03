@@ -22,9 +22,26 @@ def module(string):
 
 def fetch(args):
     modules = args.submodules
-    os.system("git submodule init " + " ".join(modules))
-    os.system("git config commit.template " + os.path.join(ROOT_DIR, ".commit-template"))
-    os.system("git submodule update " + " ".join(modules))
+
+    cmd = "git submodule init " + " ".join(modules)
+    print "+ %s" % cmd
+    os.system(cmd)
+
+    cmd = "git config commit.template " + os.path.join(ROOT_DIR, ".commit-template")
+    print "+ %s" % cmd
+    os.system(cmd)
+
+    cmd = "git submodule update " + " ".join(modules)
+    print "+ %s" % cmd
+    os.system(cmd)
+
+    # Set commit template for all submodules
+    for submodule in modules:
+        os.chdir(submodule)
+        cmd = "git config commit.template " + os.path.join(ROOT_DIR, ".commit-template")
+        print "+ cd %s && %s" % (submodule, cmd)
+        os.system(cmd)
+        os.chdir("..")
 
 def switch(args):
     def switch_submodule(value, old_base_url, new_base_url):
