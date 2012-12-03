@@ -27,6 +27,24 @@ def fetch(args):
     os.system("git submodule update " + " ".join(modules))
 
 def switch(args):
+    def switch_submodule(value, old_base_url, new_base_url):
+        value = value.replace(old_base_url, new_base_url)
+        cmd = "git config submodule.%s.url %s" % (key, value)
+        print "+ %s" % cmd
+        os.system(cmd)
+        #
+        os.chdir(key)
+        cmd = "git remote set-url origin %s" % value
+        print "+ cd %s && %s" % (key, cmd)
+        os.system(cmd)
+        os.chdir("..")
+
+    def switch_remote(value, old_base_url, new_base_url):
+        value = value.replace(old_base_url, new_base_url)
+        cmd = "git remote set-url origin %s" % value
+        print "+ %s" % cmd
+        os.system(cmd)
+
     import re
 
     old_base_url = BASE_URLS["ssh" if args.mode == "http" else "http"]
@@ -34,26 +52,27 @@ def switch(args):
 
     config = gitconfig()
     for conf in config:
-        # Only handle configuration lines about submodules
+        # Only handle configuration lines about submodules...
         m = re.search(r'submodule\.([^.=]+)\.url=(.*)', conf)
-        if not m:
-            continue
+        if m:
+            # Get submodule name and URL
+            key, value = m.groups()
 
-        # Get submodule name and URL
-        key, value = m.groups()
+            # Switch to the new URL
+            if value[:len(old_base_url)]:
+                switch_submodule(value, old_base_url, new_base_url)
+        else:
+            # ...or the remote
+            m = re.search(r'remote\.origin\.url=(.*)', conf)
+            if not m:
+                continue
 
-        # Switch to the new URL
-        if value[:len(old_base_url)]:
-            value = value.replace(old_base_url, new_base_url)
-            cmd = "git config submodule.%s.url %s" % (key, value)
-            print "+ %s" % cmd
-            os.system(cmd)
+            # Get the URL
+            value = m.groups()[0]
 
-            os.chdir(key)
-            cmd = "git remote set-url origin %s" % value
-            print "+ cd %s && %s" % (key, cmd)
-            os.system(cmd)
-            os.chdir("..")
+            # Switch to the new URL
+            if value[:len(old_base_url)]:
+                switch_remote(value, old_base_url, new_base_url)
 
 def forward(args):
     for module in args.submodules:
