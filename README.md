@@ -239,7 +239,7 @@ Once you are done building remember to properly configure your environment:
 
 ```sh
 # Save original environment variables
-export OLDPATH=$PATH
+export OLD_PATH=$PATH
 export OLD_QT_PLUGIN_PATH=$QT_PLUGIN_PATH
 export OLD_QML2_IMPORT_PATH=$QML2_IMPORT_PATH
 export OLD_XDG_DATA_DIRS=$XDG_DATA_DIRS
