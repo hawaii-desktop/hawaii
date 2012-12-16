@@ -8,6 +8,7 @@ COOKIENAME_BUILD = ".hawaii-ci-build-cookie"
 MODULES = [
     "kde-extra-cmake-modules",
     "kde-solid",
+    "polkit-qt-1",
     "vibe",
     "widget-styles",
     "icon-themes",
@@ -32,6 +33,7 @@ IGNORED_MODULES = [
 DEPENDENCIES = {
     "kde-extra-cmake-modules": "",
     "kde-solid": "kde-extra-cmake-modules",
+    "polkit-qt-1": "",
     "vibe": "kde-solid",
     "fluid": "vibe,fluid-themes",
     "fluid-themes": "vibe",
