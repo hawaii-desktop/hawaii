@@ -240,6 +240,7 @@ Once you are done building remember to properly configure your environment:
 ```sh
 # Save original environment variables
 export OLD_PATH=$PATH
+export OLD_QT_MESSAGE_PATTERN=$QT_MESSAGE_PATTERN
 export OLD_QT_PLUGIN_PATH=$QT_PLUGIN_PATH
 export OLD_QML2_IMPORT_PATH=$QML2_IMPORT_PATH
 export OLD_XDG_DATA_DIRS=$XDG_DATA_DIRS
@@ -256,6 +257,7 @@ if [ -f /etc/debian_version ]; then
 fi
 
 export PATH=/opt/hawaii/bin:$PATH
+export QT_MESSAGE_PATTERN='%{appname}(%{pid})/%{category} %{function}: %{message}'
 export QT_PLUGIN_PATH=/opt/hawaii/plugins:$QT_PLUGIN_PATH
 export QML2_IMPORT_PATH=/opt/hawaii/qml:$QML2_IMPORT_PATH
 export XDG_DATA_DIRS=$XDG_DATA_DIRS:/opt/hawaii/share/
@@ -276,6 +278,7 @@ with the following code:
 
 ```sh
 export PATH=$OLD_PATH
+export QT_MESSAGE_PATTERN=$OLD_QT_MESSAGE_PATTERN
 export QT_PLUGIN_PATH=$OLD_QT_PLUGIN_PATH
 export QML2_IMPORT_PATH=$OLD_QML2_IMPORT_PATH
 export XDG_DATA_DIRS=$OLD_XDG_DATA_DIRS
