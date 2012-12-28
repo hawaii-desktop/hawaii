@@ -46,6 +46,3 @@
 [submodule "fluid-themes"]
 	path = fluid-themes
 	url = https://github.com/hawaii-desktop/fluid-themes.git
-[submodule "polkit-qt-1"]
-	path = polkit-qt-1
-	url = git://anongit.kde.org/polkit-qt-1
