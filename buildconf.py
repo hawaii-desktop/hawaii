@@ -41,7 +41,7 @@ DEPENDENCIES = {
     "icon-themes": "vibe",
     "wallpapers": "vibe",
     "login-manager": "fluid",
-    "greenisland": "vibe,fluid,wallpapers",
+    "greenisland": "vibe,fluid,wallpapers,polkit-qt-1",
     "swordfish": "vibe",
     "system-preferences": "vibe",
     "archiver": "vibe",
