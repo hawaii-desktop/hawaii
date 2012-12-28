@@ -33,7 +33,7 @@ IGNORED_MODULES = [
 DEPENDENCIES = {
     "kde-extra-cmake-modules": "",
     "kde-solid": "kde-extra-cmake-modules",
-    "polkit-qt-1": "",
+    "polkit-qt-1": "kde-extra-cmake-modules",
     "vibe": "kde-solid",
     "fluid": "vibe,fluid-themes",
     "fluid-themes": "vibe",
