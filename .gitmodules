@@ -55,3 +55,6 @@
 [submodule "qt-accountsservice-addon"]
 	path = qt-accountsservice-addon
 	url = https://github.com/hawaii-desktop/qt-accountsservice-addon.git
+[submodule "polkit-qt-1"]
+	path = polkit-qt-1
+	url = https://github.com/hawaii-desktop/polkit-qt-1.git
