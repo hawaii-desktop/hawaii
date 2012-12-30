@@ -160,6 +160,14 @@ def build_module(module, args):
     workdir = os.path.join(builddir, module.name)
     origworkdir = os.getcwd()
     retval = True
+    buildsys = "cmake"
+
+    # Detect a qmake-based build system
+    for entry in os.listdir(moduledir):
+        if os.path.splitext(entry)[1] == ".pro":
+            buildsys = "qmake"
+            qmake_project = os.path.join(moduledir, entry)
+            break
 
     # Create the build directory if it's either not found or we're in rebuild mode
     if not os.path.exists(os.path.join(workdir, COOKIENAME_CONFIGURE)) or args.rebuild:
@@ -169,9 +177,14 @@ def build_module(module, args):
         os.system("mkdir -p %s" % workdir)
 
         # Configure the submodule
-        if args.verbose: print "Running cmake..."
-        if not exec_cmd("cmake %s %s" % (" ".join(cmakeargs), moduledir), workdir):
-            retval = False
+        if buildsys == "cmake":
+            if args.verbose: print "Running cmake..."
+            if not exec_cmd("cmake %s %s" % (" ".join(cmakeargs), moduledir), workdir):
+                retval = False
+        else:
+            if args.verbose: print "Running qmake..."
+            if not exec_cmd("qmake -o Makefile %s" % qmake_project, workdir):
+                retval = False
 
         # Save the cookie
         if retval:
