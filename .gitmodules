@@ -49,3 +49,9 @@
 [submodule "polkit-qt-1"]
 	path = polkit-qt-1
 	url = git://anongit.kde.org/polkit-qt-1
+[submodule "kde-kcoreaddons"]
+	path = kde-kcoreaddons
+	url = https://github.com/hawaii-desktop/kde-kcoreaddons.git
+[submodule "libkdeqt5staging"]
+	path = libkdeqt5staging
+	url = https://github.com/hawaii-desktop/libkdeqt5staging.git
