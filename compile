@@ -83,15 +83,23 @@ def determine_modules(moduleslist):
     """Create a dictionary of Modules."""
     modules = {}
 
+    # Create an entry for each module
     for m in MODULES:
         modules[m] = Module(m)
 
+    # Add dependencies
     for k in modules.keys():
         dependencies = DEPENDENCIES[k].split(',') if DEPENDENCIES[k] else None
         if dependencies:
             for dependency in dependencies:
                 modules[k].add_dependency(modules[dependency])
-    return modules
+
+    # Returns only the modules we need
+    supported_modules = {}
+    for module in moduleslist:
+        supported_modules[module] = modules[module]
+
+    return supported_modules
 
 def build(args):
     moduleslist = MODULES
