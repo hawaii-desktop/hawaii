@@ -5,6 +5,22 @@ from buildconf import *
 
 ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
 
+def run_sync(args, cwd=None):
+    import subprocess
+    print "+ %s (from %s)" % (subprocess.list2cmdline(args), cwd)
+
+    stdin_target = open('/dev/null', 'r')
+    stdout_target = sys.stdout
+    stderr_target = sys.stderr
+
+    proc = subprocess.Popen(args, stdin=stdin_target, stdout=stdout_target, stderr=stderr_target,
+        close_fds=True, cwd=cwd)
+    stdin_target.close()
+    returncode = proc.wait()
+    if returncode != 0:
+        print >> sys.stderr, "pid %d exited with code %d" % (proc.pid, returncode)
+    return returncode
+
 def gitconfig():
     import subprocess
     lines = []
@@ -21,46 +37,29 @@ def module(string):
     raise argparse.ArgumentTypeError("No such module '%s'" % string)
 
 def fetch(args):
-    modules = args.submodules
+    parms = ["git", "submodule", "init"]
+    parms.extend(args.submodules)
+    run_sync(parms)
 
-    cmd = "git submodule init " + " ".join(modules)
-    print "+ %s" % cmd
-    os.system(cmd)
+    run_sync(["git", "config", "commit.template", os.path.join(ROOT_DIR, ".commit-template")])
 
-    cmd = "git config commit.template " + os.path.join(ROOT_DIR, ".commit-template")
-    print "+ %s" % cmd
-    os.system(cmd)
-
-    cmd = "git submodule update " + " ".join(modules)
-    print "+ %s" % cmd
-    os.system(cmd)
+    parms = ["git", "submodule", "update"]
+    parms.extend(args.submodules)
+    run_sync(parms)
 
     # Set commit template for all submodules
-    for submodule in modules:
-        os.chdir(submodule)
-        cmd = "git config commit.template " + os.path.join(ROOT_DIR, ".commit-template")
-        print "+ cd %s && %s" % (submodule, cmd)
-        os.system(cmd)
-        os.chdir("..")
+    for submodule in args.submodules:
+        run_sync(["git", "config", "commit.template", os.path.join(ROOT_DIR, ".commit-template")], cwd=submodule)
 
 def switch(args):
     def switch_submodule(value, old_base_url, new_base_url):
         value = value.replace(old_base_url, new_base_url)
-        cmd = "git config submodule.%s.url %s" % (key, value)
-        print "+ %s" % cmd
-        os.system(cmd)
-        #
-        os.chdir(key)
-        cmd = "git remote set-url origin %s" % value
-        print "+ cd %s && %s" % (key, cmd)
-        os.system(cmd)
-        os.chdir("..")
+        run_sync(["git", "config", "submodule.%s.url" % key, value])
+        run_sync(["git", "remote", "set-url", "origin", value], cwd=key)
 
     def switch_remote(value, old_base_url, new_base_url):
         value = value.replace(old_base_url, new_base_url)
-        cmd = "git remote set-url origin %s" % value
-        print "+ %s" % cmd
-        os.system(cmd)
+        run_sync(["git", "remote", "set-url", "origin", value])
 
     import re
 
@@ -94,9 +93,7 @@ def switch(args):
 def forward(args):
     for module in args.submodules:
         # Update the submodule
-        os.chdir(module)
-        os.system("git pull")
-        os.chdir("..")
+        run_sync(["git", "pull"], cwd=module)
 
         # This submodule needs a rebuild
         cookiefilename = os.path.join(ROOT_DIR, "build", module, COOKIENAME)
