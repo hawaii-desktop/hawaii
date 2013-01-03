@@ -96,9 +96,10 @@ def forward(args):
         run_sync(["git", "pull"], cwd=module)
 
         # This submodule needs a rebuild
-        cookiefilename = os.path.join(ROOT_DIR, "build", module, COOKIENAME)
-        if os.path.exists(cookiefilename):
-            os.path.unlink(cookiefilename)
+        for f in (COOKIENAME_CONFIGURE, COOKIENAME_BUILD):
+            cookiefilename = os.path.join(ROOT_DIR, "build", module, f)
+            if os.path.exists(cookiefilename):
+                os.unlink(cookiefilename)
 
 if __name__ == "__main__":
     root_parser = argparse.ArgumentParser()
