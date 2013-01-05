@@ -40,18 +40,36 @@ build process if the build time is greater than sudo timeout.
 Dependencies
 ------------
 
-In order to build the submodules you need CMake 2.8.9+, Qt 5 and,
-if you want to compile the **greenisland** module, both Wayland and
-QtWayland.  If you don't want to build **greenisland** just disable
+Every submodule needs CMake 2.8.10.1+ and Qt 5 installed.
+
+Some submodules have more requirements:
+
+* The **greenisland** submodule requires both Wayland and qtwayland.
+If you don't want to build **greenisland** just disable
 it with the --blacklist argument (see the *"Blacklist and whitelist"*
 chapter).
+* The **login-manager** submodule requires systemd which is not
+available on every GNU/Linux distribution out there.
+If you don't want to build **login-manager** just disable
+it with the --blacklist argument (see the *"Blacklist and whitelist"*
+chapter).
+
+Also the AccountsService DBus service must be installed to make
+user management working.  The following submodules require
+AccountsService at runtime:
+
+* **greenisland**
+* **login-manager**
+* **system-preferences**
 
 If you are building under Maui there's no problem because it satisfies
 Hawaii requirements, but you might not be so lucky with other distributions.
 
+ArchLinux is also a reccomended distribution.
+
 ### Build external dependencies from sources
 
-If your system doesn't support CMake 2.8.9+ take a look at [here](http://www.cmake.org/cmake/resources/software.html),
+If your system doesn't provide a recent CMake version take a look at [here](http://www.cmake.org/cmake/resources/software.html),
 download CMake sources, build and install it.
 
 Read the following pages to build Qt 5 and Wayland from sources:
@@ -59,24 +77,9 @@ Read the following pages to build Qt 5 and Wayland from sources:
 * http://wayland.freedesktop.org/building.html
 * http://qt-project.org/wiki/Building_Qt_5_from_Git
 
-### Install dependencies on Ubuntu
+### Install dependencies on ArchLinux
 
-CMake 2.8.9 was backported from Quantal to Precise by Pier Luigi Fiorini.
-Add the PPA and install the package by typing:
-
-```sh
-sudo add-apt-repository ppa:plfiorini/cmake
-sudo apt-get update
-sudo apt-get install cmake
-```
-
-There's also a PPA for Qt 5 maintained by Canonical:
-
-https://launchpad.net/~canonical-qt5-edgers/+archive/qt5-daily
-
-### Install dependencies on Arch Linux
-
-An Arch Linux repository for x86_64 have been made.
+An ArchLinux repository for x86_64 have been made.
 It contains both external dependencies (Wayland, libxkbcommon, Mesa, Qt5, ...)
 and the Hawaii desktop environment.
 
