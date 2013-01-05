@@ -8,6 +8,9 @@ easier.
 
 [![Build Status](https://secure.travis-ci.org/hawaii-desktop/hawaii.png)](http://travis-ci.org/hawaii-desktop/hawaii)
 
+Travis CI runs on Ubuntu 12.04 which doesn't have updated Qt 5 packages, therefore the build
+fails and continuous integration has been disabled.
+
 Introduction
 ------------
 
