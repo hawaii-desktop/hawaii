@@ -132,9 +132,10 @@ def build(args):
     unresolved = []
     for k in modules.keys():
         resolve_deps(modules[k], resolved, unresolved)
-    print "\n\n== Building the following modules:"
+    print "\n== Building the following modules:\n"
     for mod in resolved:
         print "\t%s" % mod.name
+    print "\n"
 
     # Build all modules
     for mod in resolved:
