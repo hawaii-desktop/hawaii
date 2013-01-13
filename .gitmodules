@@ -58,3 +58,6 @@
 [submodule "polkit-qt-1"]
 	path = polkit-qt-1
 	url = https://github.com/hawaii-desktop/polkit-qt-1.git
+[submodule "libconnman-qt"]
+	path = libconnman-qt
+	url = https://github.com/hawaii-desktop/libconnman-qt.git
