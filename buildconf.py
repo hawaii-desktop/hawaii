@@ -48,7 +48,7 @@ DEPENDENCIES = {
     "widget-styles": "vibe,fluid",
     "icon-themes": "vibe",
     "wallpapers": "vibe",
-    "login-manager": "qt-accountsservice-addon,fluid",
+    "login-manager": "qt-accountsservice-addon,fluid,greenisland",
     "greenisland": "qt-accountsservice-addon,polkit-qt-1,vibe,fluid,wallpapers",
     "swordfish": "vibe",
     "system-preferences": "vibe,qt-accountsservice-addon",
