@@ -58,3 +58,6 @@
 [submodule "libconnman-qt"]
 	path = libconnman-qt
 	url = https://github.com/hawaii-desktop/libconnman-qt.git
+[submodule "kde-libkdeqt5staging"]
+	path = kde-libkdeqt5staging
+	url = https://github.com/hawaii-desktop/libkdeqt5staging.git
