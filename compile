@@ -79,9 +79,14 @@ def resolve_deps(mod, resolved, unresolved):
     resolved.append(mod)
     unresolved.remove(mod)
 
-def determine_modules(moduleslist):
+def determine_modules(args, moduleslist):
     """Create a dictionary of Modules."""
     modules = {}
+
+    # Ignore modules on the black list
+    blacklist = args.blacklist if args.blacklist else []
+    whitelist = args.whitelist if args.whitelist else []
+    blacklist = list(set(IGNORED_MODULES + blacklist) - set(whitelist))
 
     # Create an entry for each module
     for m in MODULES:
@@ -97,7 +102,8 @@ def determine_modules(moduleslist):
     # Returns only the modules we need
     supported_modules = {}
     for module in moduleslist:
-        supported_modules[module] = modules[module]
+        if module not in blacklist:
+            supported_modules[module] = modules[module]
 
     return supported_modules
 
@@ -125,7 +131,7 @@ def build(args):
         return False
 
     # Determine modules and dependencies
-    modules = determine_modules(moduleslist)
+    modules = determine_modules(args, moduleslist)
 
     # Resolve dependencies
     resolved = []
@@ -144,13 +150,6 @@ def build(args):
     return True
 
 def build_module(module, args):
-    # Ignore modules on the black list
-    blacklist = args.blacklist if args.blacklist else []
-    whitelist = args.whitelist if args.whitelist else []
-    blacklist = list(set(IGNORED_MODULES + blacklist) - set(whitelist))
-    if module.name in blacklist:
-        return True
-
     import shutil
 
     print "===> Building %s ..." % module.name
