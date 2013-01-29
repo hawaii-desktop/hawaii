@@ -30,6 +30,8 @@ MODULES = [
 
 # Ignore modules
 IGNORED_MODULES = [
+    "kde-libkdeqt5staging",
+    "kde-kcoreaddons",
 ]
 
 # Dependencies
