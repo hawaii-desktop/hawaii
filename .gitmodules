@@ -49,9 +49,6 @@
 [submodule "kde-kcoreaddons"]
 	path = kde-kcoreaddons
 	url = https://github.com/hawaii-desktop/kde-kcoreaddons.git
-[submodule "libkdeqt5staging"]
-	path = libkdeqt5staging
-	url = https://github.com/hawaii-desktop/libkdeqt5staging.git
 [submodule "qt-accountsservice-addon"]
 	path = qt-accountsservice-addon
 	url = https://github.com/hawaii-desktop/qt-accountsservice-addon.git

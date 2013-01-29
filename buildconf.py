@@ -7,7 +7,6 @@ COOKIENAME_BUILD = ".hawaii-ci-build-cookie"
 # Modules
 MODULES = [
     "kde-extra-cmake-modules",
-    "libkdeqt5staging",
     "kde-solid",
     "kde-kcoreaddons",
     "libconnman-qt",
@@ -36,9 +35,8 @@ IGNORED_MODULES = [
 # Dependencies
 DEPENDENCIES = {
     "kde-extra-cmake-modules": "",
-    "libkdeqt5staging": "kde-extra-cmake-modules",
     "kde-solid": "kde-extra-cmake-modules",
-    "kde-kcoreaddons": "kde-extra-cmake-modules,libkdeqt5staging",
+    "kde-kcoreaddons": "kde-extra-cmake-modules",
     "libconnman-qt": "",
     "qt-accountsservice-addon": "",
     "polkit-qt-1": "kde-extra-cmake-modules",
