@@ -32,6 +32,8 @@ MODULES = [
 IGNORED_MODULES = [
     "kde-libkdeqt5staging",
     "kde-kcoreaddons",
+    "widget-styles",
+    "widget-factory",
 ]
 
 # Dependencies
