@@ -19,6 +19,7 @@ MODULES = [
     "fluid",
     "fluid-themes",
     "greenisland",
+    "shell",
     "swordfish",
     "system-preferences",
     "archiver",
