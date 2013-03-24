@@ -50,7 +50,7 @@ DEPENDENCIES = {
     "widget-styles": "vibe,fluid",
     "icon-themes": "vibe",
     "wallpapers": "vibe",
-    "greenisland": "vibe",
+    "greenisland": "vibe,qt-accountsservice-addon",
     "shell": "greenisland,qt-accountsservice-addon,polkit-qt-1,fluid,wallpapers",
     "swordfish": "vibe",
     "system-preferences": "vibe,qt-accountsservice-addon",
