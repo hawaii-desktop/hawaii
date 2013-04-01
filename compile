@@ -51,11 +51,12 @@ def parse_args(args):
 
     return cmakeargs
 
-def exec_cmd(cmd, workdir):
+def exec_cmd(cmd, workdir, env=None, shell=False):
+    import shlex
     try:
-        shcmd = "cd %s && %s" % (workdir, cmd)
-        print shcmd
-        retcode = subprocess.call(shcmd, shell=True)
+        print "%s (from %s)" % (cmd, workdir)
+        proc = subprocess.Popen(shlex.split(cmd), cwd=workdir, env=env, shell=shell)
+        retcode = proc.wait()
         if retcode < 0:
             print >>sys.stderr, "Child was terminated by signal", -retcode
             return False
@@ -162,6 +163,14 @@ def build_module(module, args):
     retval = True
     buildsys = "cmake"
 
+    # Setup environment
+    env = os.environ.copy()
+    pkg_config_path = "%s/lib/pkgconfig:%s/lib64/pkgconfig" % (args.prefix, args.prefix)
+    if env.has_key("PKG_CONFIG_PATH"):
+        env["PKG_CONFIG_PATH"] += ":%s" % pkg_config_path
+    else:
+        env["PKG_CONFIG_PATH"] = pkg_config_path
+
     # Detect a qmake-based build system
     for entry in os.listdir(moduledir):
         if os.path.splitext(entry)[1] == ".pro":
@@ -182,21 +191,21 @@ def build_module(module, args):
         # Configure the submodule
         if buildsys == "cmake":
             if args.verbose: print "Running cmake..."
-            if not exec_cmd("cmake %s %s" % (" ".join(cmakeargs), moduledir), workdir):
+            if not exec_cmd("cmake %s %s" % (" ".join(cmakeargs), moduledir), workdir, env=env):
                 retval = False
         elif buildsys == "qmake":
             if args.verbose: print "Running qmake..."
-            if not exec_cmd("qmake -o Makefile %s" % qmake_project, workdir):
+            if not exec_cmd("qmake -o Makefile %s" % qmake_project, workdir, env=env):
                 retval = False
         elif buildsys == "autotools":
             if args.verbose: print "Running configure..."
-            if not exec_cmd("%s/autogen.sh --prefix=%s" % (moduledir, args.prefix), workdir):
+            if not exec_cmd("%s/autogen.sh --prefix=%s" % (moduledir, args.prefix), workdir, env=env):
                 retval = False
 
         # Save the cookie
         if retval:
             if args.verbose: print "Saving the cookie..."
-            if not exec_cmd("date > %s" % COOKIENAME_CONFIGURE, workdir):
+            if not exec_cmd("date > %s" % COOKIENAME_CONFIGURE, workdir, shell=True):
                 retval = False
 
     if retval:
@@ -211,7 +220,7 @@ def build_module(module, args):
         # Save the cookie
         if retval:
             if args.verbose: print "Saving the cookie..."
-            if not exec_cmd("date > %s" % COOKIENAME_BUILD, workdir):
+            if not exec_cmd("date > %s" % COOKIENAME_BUILD, workdir, shell=True):
                 retval = False
 
     if retval:
