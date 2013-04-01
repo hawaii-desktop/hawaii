@@ -55,7 +55,7 @@ DEPENDENCIES = {
     "shell": "greenisland,qt-accountsservice-addon,polkit-qt-1,fluid,wallpapers",
     "shell-weston-plugins": "shell",
     "swordfish": "vibe",
-    "system-preferences": "vibe,qt-accountsservice-addon",
+    "system-preferences": "vibe,polkit-qt-1,qt-accountsservice-addon",
     "archiver": "vibe",
     "eyesight": "vibe",
     "terminal": "vibe",
