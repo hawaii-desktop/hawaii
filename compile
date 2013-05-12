@@ -1,6 +1,6 @@
 #!/usr/bin/env python2
 
-import argparse, subprocess, sys, os
+import argparse, subprocess, sys, os, datetime
 from buildconf import *
 
 ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
@@ -205,7 +205,11 @@ def build_module(module, args):
         # Save the cookie
         if retval:
             if args.verbose: print "Saving the cookie..."
-            if not exec_cmd("date > %s" % COOKIENAME_CONFIGURE, workdir, shell=True):
+            try:
+                f = open(os.path.join(workdir, COOKIENAME_CONFIGURE), "w")
+                f.write(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+                f.close()
+            except:
                 retval = False
 
     if retval:
@@ -220,7 +224,11 @@ def build_module(module, args):
         # Save the cookie
         if retval:
             if args.verbose: print "Saving the cookie..."
-            if not exec_cmd("date > %s" % COOKIENAME_BUILD, workdir, shell=True):
+            try:
+                f = open(os.path.join(workdir, COOKIENAME_BUILD), "w")
+                f.write(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+                f.close()
+            except:
                 retval = False
 
     if retval:
