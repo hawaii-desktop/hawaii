@@ -33,7 +33,6 @@ MODULES = [
 IGNORED_MODULES = [
     "kde-libkdeqt5staging",
     "kde-kcoreaddons",
-    "widget-styles",
     "widget-factory",
 ]
 
@@ -48,7 +47,7 @@ DEPENDENCIES = {
     "vibe": "kde-solid",
     "fluid": "vibe,fluid-themes",
     "fluid-themes": "vibe",
-    "widget-styles": "vibe,fluid",
+    "widget-styles": "",
     "icon-themes": "vibe",
     "wallpapers": "vibe",
     "greenisland": "vibe,qt-accountsservice-addon",
