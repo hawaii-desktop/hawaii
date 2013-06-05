@@ -26,6 +26,7 @@ MODULES = [
     "archiver",
     "eyesight",
     "terminal",
+    "cinema",
     "widget-factory",
 ]
 
@@ -57,6 +58,7 @@ DEPENDENCIES = {
     "archiver": "vibe",
     "eyesight": "vibe",
     "terminal": "vibe",
+    "cinema": "",
     "widget-factory": "widget-styles",
 }
 
