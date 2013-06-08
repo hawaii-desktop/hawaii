@@ -40,7 +40,7 @@ build process if the build time is greater than sudo timeout.
 Dependencies
 ------------
 
-Every submodule needs CMake 2.8.10.1+ and Qt 5 installed.
+Every submodule needs CMake 2.8.11+ and Qt 5 installed.
 
 Some submodules have more requirements:
 
