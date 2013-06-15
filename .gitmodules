@@ -64,3 +64,6 @@
 [submodule "cinema"]
 	path = cinema
 	url = https://github.com/hawaii-desktop/cinema.git
+[submodule "qtxdg"]
+	path = qtxdg
+	url = https://github.com/hawaii-desktop/qtxdg.git
