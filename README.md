@@ -48,18 +48,12 @@ Some submodules have more requirements:
 If you don't want to build **greenisland** just disable
 it with the --blacklist argument (see the *"Blacklist and whitelist"*
 chapter).
-* The **login-manager** submodule requires systemd which is not
-available on every GNU/Linux distribution out there.
-If you don't want to build **login-manager** just disable
-it with the --blacklist argument (see the *"Blacklist and whitelist"*
-chapter).
 
 Also the AccountsService DBus service must be installed to make
 user management working.  The following submodules require
 AccountsService at runtime:
 
 * **greenisland**
-* **login-manager**
 * **system-preferences**
 
 If you are building under Maui there's no problem because it satisfies
