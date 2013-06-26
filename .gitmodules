@@ -40,9 +40,6 @@
 [submodule "fluid"]
 	path = fluid
 	url = https://github.com/hawaii-desktop/fluid.git
-[submodule "fluid-themes"]
-	path = fluid-themes
-	url = https://github.com/hawaii-desktop/fluid-themes.git
 [submodule "kde-kcoreaddons"]
 	path = kde-kcoreaddons
 	url = https://github.com/hawaii-desktop/kde-kcoreaddons.git
