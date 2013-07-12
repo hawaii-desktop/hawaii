@@ -57,7 +57,7 @@ DEPENDENCIES = {
     "swordfish": "vibe",
     "system-preferences": "vibe,polkit-qt-1,qtxdg,qt-accountsservice-addon",
     "archiver": "vibe",
-    "eyesight": "vibe",
+    "eyesight": "",
     "terminal": "vibe",
     "cinema": "",
     "widget-factory": "widget-styles",
