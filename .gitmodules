@@ -1,9 +1,21 @@
 [submodule "kde-extra-cmake-modules"]
 	path = kde-extra-cmake-modules
 	url = git://anongit.kde.org/extra-cmake-modules
+[submodule "kde-libkdeqt5staging"]
+	path = kde-libkdeqt5staging
+	url = https://github.com/hawaii-desktop/libkdeqt5staging.git
+[submodule "kde-kcoreaddons"]
+	path = kde-kcoreaddons
+	url = https://github.com/hawaii-desktop/kde-kcoreaddons.git
 [submodule "kde-solid"]
 	path = kde-solid
 	url = https://github.com/hawaii-desktop/solid.git
+[submodule "kde-karchive"]
+	path = kde-karchive
+	url = https://github.com/hawaii-desktop/karchive.git
+[submodule "polkit-qt-1"]
+	path = polkit-qt-1
+	url = https://github.com/hawaii-desktop/polkit-qt-1.git
 [submodule "vibe"]
 	path = vibe
 	url = https://github.com/hawaii-desktop/vibe.git
@@ -40,18 +52,9 @@
 [submodule "fluid"]
 	path = fluid
 	url = https://github.com/hawaii-desktop/fluid.git
-[submodule "kde-kcoreaddons"]
-	path = kde-kcoreaddons
-	url = https://github.com/hawaii-desktop/kde-kcoreaddons.git
 [submodule "qt-accountsservice-addon"]
 	path = qt-accountsservice-addon
 	url = https://github.com/hawaii-desktop/qt-accountsservice-addon.git
-[submodule "polkit-qt-1"]
-	path = polkit-qt-1
-	url = https://github.com/hawaii-desktop/polkit-qt-1.git
-[submodule "kde-libkdeqt5staging"]
-	path = kde-libkdeqt5staging
-	url = https://github.com/hawaii-desktop/libkdeqt5staging.git
 [submodule "shell"]
 	path = shell
 	url = https://github.com/hawaii-desktop/shell.git
