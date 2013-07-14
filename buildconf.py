@@ -35,6 +35,8 @@ MODULES = [
 IGNORED_MODULES = [
     "kde-libkdeqt5staging",
     "kde-kcoreaddons",
+    "kde-karchive",
+    "archiver",
     "terminal"
 ]
 
@@ -58,7 +60,7 @@ DEPENDENCIES = {
     "shell-weston-plugins": "shell",
     "swordfish": "vibe",
     "system-preferences": "vibe,polkit-qt-1,qtxdg,qt-accountsservice-addon",
-    "archiver": "vibe",
+    "archiver": "kde-karchive",
     "eyesight": "",
     "terminal": "vibe",
     "cinema": "",
