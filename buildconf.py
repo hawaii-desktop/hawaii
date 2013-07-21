@@ -47,7 +47,7 @@ DEPENDENCIES = {
     "kde-extra-cmake-modules": "",
     "kde-solid": "kde-extra-cmake-modules",
     "kde-libkdeqt5staging": "kde-extra-cmake-modules",
-    "kde-kconfig": "kde-extra-cmake-modules",
+    "kde-kconfig": "kde-extra-cmake-modules,kde-libkdeqt5staging",
     "kde-kcoreaddons": "kde-libkdeqt5staging",
     "kde-karchive": "kde-extra-cmake-modules",
     "qtxdg": "",
