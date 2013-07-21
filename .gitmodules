@@ -67,3 +67,6 @@
 [submodule "qtxdg"]
 	path = qtxdg
 	url = https://github.com/hawaii-desktop/qtxdg.git
+[submodule "kde-kconfig"]
+	path = kde-kconfig
+	url = https://github.com/hawaii-desktop/kconfig.git
