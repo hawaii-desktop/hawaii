@@ -37,6 +37,7 @@ IGNORED_MODULES = [
     "kde-kcoreaddons",
     "kde-karchive",
     "archiver",
+    "swordfish",
     "terminal"
 ]
 
@@ -51,15 +52,15 @@ DEPENDENCIES = {
     "qt-accountsservice-addon": "",
     "polkit-qt-1": "kde-extra-cmake-modules",
     "vibe": "kde-solid",
-    "fluid": "vibe",
+    "fluid": "",
     "widget-styles": "",
-    "icon-themes": "vibe",
-    "wallpapers": "vibe",
-    "greenisland": "vibe,qt-accountsservice-addon",
+    "icon-themes": "",
+    "wallpapers": "",
+    "greenisland": "qtxdg,qt-accountsservice-addon",
     "shell": "greenisland,qt-accountsservice-addon,polkit-qt-1,fluid,wallpapers",
     "shell-weston-plugins": "shell",
     "swordfish": "vibe",
-    "system-preferences": "vibe,polkit-qt-1,qtxdg,qt-accountsservice-addon",
+    "system-preferences": "polkit-qt-1,qtxdg,qt-accountsservice-addon",
     "archiver": "kde-karchive",
     "eyesight": "",
     "terminal": "vibe",
