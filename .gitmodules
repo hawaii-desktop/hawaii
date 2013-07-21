@@ -6,7 +6,10 @@
 	url = https://github.com/hawaii-desktop/libkdeqt5staging.git
 [submodule "kde-kcoreaddons"]
 	path = kde-kcoreaddons
-	url = https://github.com/hawaii-desktop/kde-kcoreaddons.git
+	url = https://github.com/hawaii-desktop/kcoreaddons.git
+[submodule "kde-kconfig"]
+	path = kde-kconfig
+	url = https://github.com/hawaii-desktop/kconfig.git
 [submodule "kde-solid"]
 	path = kde-solid
 	url = https://github.com/hawaii-desktop/solid.git
@@ -67,6 +70,3 @@
 [submodule "qtxdg"]
 	path = qtxdg
 	url = https://github.com/hawaii-desktop/qtxdg.git
-[submodule "kde-kconfig"]
-	path = kde-kconfig
-	url = https://github.com/hawaii-desktop/kconfig.git
