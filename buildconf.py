@@ -34,8 +34,6 @@ MODULES = [
 
 # Ignore modules
 IGNORED_MODULES = [
-    "kde-libkdeqt5staging",
-    "kde-kcoreaddons",
     "kde-karchive",
     "archiver",
     "swordfish",
@@ -59,8 +57,8 @@ DEPENDENCIES = {
     "icon-themes": "",
     "wallpapers": "",
     "greenisland": "qtxdg,qt-accountsservice-addon",
-    "shell": "greenisland,qt-accountsservice-addon,polkit-qt-1,fluid,wallpapers",
-    "shell-weston-plugins": "shell",
+    "shell": "greenisland,shell-weston-plugins,qt-accountsservice-addon,qtxdg,polkit-qt-1,kde-kconfig,fluid,wallpapers",
+    "shell-weston-plugins": "",
     "swordfish": "vibe",
     "system-preferences": "polkit-qt-1,qtxdg,qt-accountsservice-addon",
     "archiver": "kde-karchive",
