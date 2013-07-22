@@ -165,11 +165,18 @@ def build_module(module, args):
 
     # Setup environment
     env = os.environ.copy()
-    pkg_config_path = "%s/lib/pkgconfig:%s/lib64/pkgconfig" % (args.prefix, args.prefix)
+    pkg_config_path = "%s/lib/pkgconfig" % args.prefix
     if env.has_key("PKG_CONFIG_PATH"):
         env["PKG_CONFIG_PATH"] += ":%s" % pkg_config_path
     else:
         env["PKG_CONFIG_PATH"] = pkg_config_path
+
+    # CMake arguments
+    cmakeargs.extend([
+        "-DCMAKE_PREFIX_PATH=%s/lib/cmake" % args.prefix,
+        "-DCMAKE_INSTALL_LIBDIR=lib",
+        "-DLIB_INSTALL_DIR=lib"
+    ])
 
     # Detect a qmake-based build system
     for entry in os.listdir(moduledir):
