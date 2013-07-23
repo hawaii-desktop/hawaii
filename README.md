@@ -258,8 +258,8 @@ fi
 
 export PATH=/opt/hawaii/bin:$PATH
 export QT_MESSAGE_PATTERN='%{appname}(%{pid})/%{category} %{function}: %{message}'
-export QT_PLUGIN_PATH=/opt/hawaii/plugins:$QT_PLUGIN_PATH
-export QML2_IMPORT_PATH=/opt/hawaii/qml:$QML2_IMPORT_PATH
+export QT_PLUGIN_PATH=/opt/hawaii/lib/hawaii/plugins:$QT_PLUGIN_PATH
+export QML2_IMPORT_PATH=/opt/hawaii/lib/hawaii/qml:$QML2_IMPORT_PATH
 export XDG_DATA_DIRS=$XDG_DATA_DIRS:/opt/hawaii/share/
 export LD_LIBRARY_PATH=$libdir:$LD_LIBRARY_PATH
 export DESKTOP_SESSION=hawaii
