@@ -15,7 +15,6 @@ MODULES = [
     "qtxdg",
     "qt-accountsservice-addon",
     "polkit-qt-1",
-    "vibe",
     "widget-styles",
     "icon-themes",
     "wallpapers",
@@ -35,7 +34,6 @@ MODULES = [
 # Ignore modules
 IGNORED_MODULES = [
     "kde-karchive",
-    "vibe",
     "greenisland",
     "archiver",
     "terminal"
@@ -52,7 +50,6 @@ DEPENDENCIES = {
     "qtxdg": "",
     "qt-accountsservice-addon": "",
     "polkit-qt-1": "kde-extra-cmake-modules",
-    "vibe": "kde-solid",
     "fluid": "",
     "widget-styles": "",
     "icon-themes": "",
@@ -64,7 +61,7 @@ DEPENDENCIES = {
     "system-preferences": "polkit-qt-1,qtxdg,qt-accountsservice-addon",
     "archiver": "kde-karchive",
     "eyesight": "",
-    "terminal": "vibe",
+    "terminal": "",
     "cinema": "",
     "widget-factory": "widget-styles",
 }
