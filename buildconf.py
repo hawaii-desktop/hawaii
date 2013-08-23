@@ -34,6 +34,10 @@ MODULES = [
 
 # Ignore modules
 IGNORED_MODULES = [
+    "kde-solid",
+    "kde-libkdeqt5staging",
+    "kde-kcoreaddons",
+    "kde-kconfig",
     "kde-karchive",
     "greenisland",
     "archiver",
