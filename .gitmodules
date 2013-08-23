@@ -61,9 +61,6 @@
 [submodule "shell"]
 	path = shell
 	url = https://github.com/hawaii-desktop/shell.git
-[submodule "shell-weston-plugins"]
-	path = shell-weston-plugins
-	url = https://github.com/hawaii-desktop/shell-weston-plugins.git
 [submodule "cinema"]
 	path = cinema
 	url = https://github.com/hawaii-desktop/cinema.git
