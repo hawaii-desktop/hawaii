@@ -39,8 +39,7 @@ IGNORED_MODULES = [
     "kde-kconfig",
     "kde-karchive",
     "greenisland",
-    "archiver",
-    "terminal"
+    "archiver"
 ]
 
 # Dependencies
