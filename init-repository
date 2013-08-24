@@ -102,12 +102,14 @@ def forward(args):
                 os.unlink(cookiefilename)
 
 if __name__ == "__main__":
+    submodules = list(set(MODULES) - set(IGNORED_MODULES))
+
     root_parser = argparse.ArgumentParser()
     sps = root_parser.add_subparsers()
 
     sp = sps.add_parser("fetch", help="initialize and check out submodules")
     sp.add_argument("submodules", nargs='*', type=module)
-    sp.set_defaults(func=fetch, submodules=MODULES)
+    sp.set_defaults(func=fetch, submodules=submodules)
 
     sp = sps.add_parser("switch", help="switch repository URL for GitHub repositories")
     sp.add_argument("--http", dest="mode", action="store_const", const="http")
@@ -116,7 +118,7 @@ if __name__ == "__main__":
 
     sp = sps.add_parser("forward", help="pull modules in each folder")
     sp.add_argument("submodules", nargs='*', type=module)
-    sp.set_defaults(func=forward, submodules=MODULES)
+    sp.set_defaults(func=forward, submodules=submodules)
 
     args = root_parser.parse_args()
     args.func(args)
