@@ -5,6 +5,10 @@ from buildconf import *
 
 ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
 
+CUSTOM_CMAKE_ARGS = {
+    "libqtxdg": ["-DUSE_QT5=ON",]
+}
+
 class Module:
     def __init__(self, name):
         self._name = name
@@ -177,6 +181,7 @@ def build_module(module, args):
         "-DCMAKE_INSTALL_LIBDIR=lib",
         "-DLIB_INSTALL_DIR=lib"
     ])
+    cmakeargs.extend(CUSTOM_CMAKE_ARGS.get(module.name, []))
 
     # Detect a qmake-based build system
     for entry in os.listdir(moduledir):
