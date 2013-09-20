@@ -41,14 +41,14 @@ def fetch(args):
     parms.extend(args.submodules)
     run_sync(parms)
 
-    for submodule in submodules:
-        run_sync(["git", "submodule", "update", "--init"], cwd=submodule)
-
     run_sync(["git", "config", "commit.template", os.path.join(ROOT_DIR, ".commit-template")])
 
     parms = ["git", "submodule", "update"]
     parms.extend(args.submodules)
     run_sync(parms)
+
+    for submodule in submodules:
+        run_sync(["git", "submodule", "update", "--init"], cwd=submodule)
 
     # Set commit template for all submodules
     for submodule in args.submodules:
