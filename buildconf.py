@@ -38,7 +38,6 @@ IGNORED_MODULES = [
     "kde-kcoreaddons",
     "kde-kconfig",
     "kde-karchive",
-    "greenisland",
     "archiver",
     "libqtxdg",
     "qtxdg"
@@ -61,7 +60,7 @@ DEPENDENCIES = {
     "icon-themes": "",
     "wallpapers": "",
     "greenisland": "",
-    "shell": "fluid,wallpapers,qtconfiguration,qt-accountsservice-addon,polkit-qt-1",
+    "shell": "greenisland,fluid,wallpapers,qtconfiguration,qt-accountsservice-addon,polkit-qt-1",
     "swordfish": "",
     "system-preferences": "polkit-qt-1,qtconfiguration,qt-accountsservice-addon",
     "archiver": "kde-karchive",
