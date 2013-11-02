@@ -19,9 +19,6 @@
 [submodule "polkit-qt-1"]
 	path = polkit-qt-1
 	url = https://github.com/hawaii-desktop/polkit-qt-1.git
-[submodule "vibe"]
-	path = vibe
-	url = https://github.com/hawaii-desktop/vibe.git
 [submodule "widget-styles"]
 	path = widget-styles
 	url = https://github.com/hawaii-desktop/widget-styles.git
