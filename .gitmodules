@@ -24,10 +24,10 @@
 	url = https://github.com/hawaii-desktop/widget-styles.git
 [submodule "icon-themes"]
 	path = icon-themes
-	url = https://github.com/hawaii-desktop/icon-themes.git
+	url = https://github.com/mauios/hawaii-icon-themes.git
 [submodule "wallpapers"]
 	path = wallpapers
-	url = https://github.com/hawaii-desktop/wallpapers.git
+	url = https://github.com/mauios/hawaii-wallpapers.git
 [submodule "widget-factory"]
 	path = widget-factory
 	url = https://github.com/hawaii-desktop/widget-factory.git
@@ -42,10 +42,10 @@
 	url = https://github.com/hawaii-desktop/swordfish.git
 [submodule "terminal"]
 	path = terminal
-	url = https://github.com/hawaii-desktop/terminal.git
+	url = https://github.com/mauios/hawaii-terminal.git
 [submodule "eyesight"]
 	path = eyesight
-	url = https://github.com/hawaii-desktop/eyesight.git
+	url = https://github.com/mauios/eyesight.git
 [submodule "archiver"]
 	path = archiver
 	url = https://github.com/hawaii-desktop/archiver.git
@@ -57,7 +57,7 @@
 	url = https://github.com/hawaii-desktop/qt-accountsservice-addon.git
 [submodule "shell"]
 	path = shell
-	url = https://github.com/hawaii-desktop/shell.git
+	url = https://github.com/mauios/hawaii-shell.git
 [submodule "cinema"]
 	path = cinema
 	url = https://github.com/hawaii-desktop/cinema.git
