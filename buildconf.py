@@ -56,7 +56,7 @@ DEPENDENCIES = {
     "qt-accountsservice-addon": "",
     "polkit-qt-1": "kde-extra-cmake-modules",
     "fluid": "",
-    "widget-styles": "",
+    "widget-styles": "fluid",
     "icon-themes": "",
     "wallpapers": "",
     "greenisland": "",
