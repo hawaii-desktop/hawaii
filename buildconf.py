@@ -66,7 +66,7 @@ DEPENDENCIES = {
     "archiver": "kde-karchive",
     "eyesight": "",
     "terminal": "",
-    "cinema": "",
+    "cinema": "fluid",
     "widget-factory": "widget-styles",
 }
 
