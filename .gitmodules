@@ -54,7 +54,7 @@
 	url = https://github.com/mauios/cinema.git
 [submodule "qtconfiguration"]
 	path = qtconfiguration
-	url = ../qtconfiguration.git
+	url = https://github.com/mauios/qtconfiguration.git
 [submodule "libqtxdg"]
 	path = libqtxdg
 	url = https://github.com/lxde/libqtxdg.git
