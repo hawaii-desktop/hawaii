@@ -1,15 +1,6 @@
 [submodule "kde-extra-cmake-modules"]
 	path = kde-extra-cmake-modules
 	url = git://anongit.kde.org/extra-cmake-modules
-[submodule "kde-libkdeqt5staging"]
-	path = kde-libkdeqt5staging
-	url = https://github.com/hawaii-desktop/libkdeqt5staging.git
-[submodule "kde-kcoreaddons"]
-	path = kde-kcoreaddons
-	url = https://github.com/hawaii-desktop/kcoreaddons.git
-[submodule "kde-kconfig"]
-	path = kde-kconfig
-	url = https://github.com/hawaii-desktop/kconfig.git
 [submodule "kde-solid"]
 	path = kde-solid
 	url = https://github.com/hawaii-desktop/solid.git
@@ -61,9 +52,6 @@
 [submodule "cinema"]
 	path = cinema
 	url = https://github.com/mauios/cinema.git
-[submodule "qtxdg"]
-	path = qtxdg
-	url = https://github.com/hawaii-desktop/qtxdg.git
 [submodule "qtconfiguration"]
 	path = qtconfiguration
 	url = ../qtconfiguration.git

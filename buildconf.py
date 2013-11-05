@@ -8,9 +8,6 @@ COOKIENAME_BUILD = ".hawaii-ci-build-cookie"
 MODULES = [
     "kde-extra-cmake-modules",
     "kde-solid",
-    "kde-libkdeqt5staging",
-    "kde-kcoreaddons",
-    "kde-kconfig",
     "kde-karchive",
     "qtconfiguration",
     "libqtxdg",
@@ -34,22 +31,15 @@ MODULES = [
 # Ignore modules
 IGNORED_MODULES = [
     "kde-solid",
-    "kde-libkdeqt5staging",
-    "kde-kcoreaddons",
-    "kde-kconfig",
     "kde-karchive",
     "archiver",
-    "libqtxdg",
-    "qtxdg"
+    "libqtxdg"
 ]
 
 # Dependencies
 DEPENDENCIES = {
     "kde-extra-cmake-modules": "",
     "kde-solid": "kde-extra-cmake-modules",
-    "kde-libkdeqt5staging": "kde-extra-cmake-modules",
-    "kde-kcoreaddons": "kde-libkdeqt5staging",
-    "kde-kconfig": "kde-extra-cmake-modules,kde-libkdeqt5staging,kde-kcoreaddons",
     "kde-karchive": "kde-extra-cmake-modules",
     "qtconfiguration": "",
     "libqtxdg": "",
