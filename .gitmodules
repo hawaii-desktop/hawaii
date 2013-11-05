@@ -21,7 +21,7 @@
 	url = https://github.com/hawaii-desktop/polkit-qt-1.git
 [submodule "widget-styles"]
 	path = widget-styles
-	url = https://github.com/hawaii-desktop/widget-styles.git
+	url = https://github.com/mauios/hawaii-widget-styles.git
 [submodule "icon-themes"]
 	path = icon-themes
 	url = https://github.com/mauios/hawaii-icon-themes.git
@@ -30,16 +30,16 @@
 	url = https://github.com/mauios/hawaii-wallpapers.git
 [submodule "widget-factory"]
 	path = widget-factory
-	url = https://github.com/hawaii-desktop/widget-factory.git
+	url = https://github.com/mauios/widget-factory.git
 [submodule "greenisland"]
 	path = greenisland
-	url = https://github.com/hawaii-desktop/greenisland.git
+	url = https://github.com/mauios/greenisland.git
 [submodule "system-preferences"]
 	path = system-preferences
-	url = https://github.com/hawaii-desktop/system-preferences.git
+	url = https://github.com/mauios/hawaii-system-preferences.git
 [submodule "swordfish"]
 	path = swordfish
-	url = https://github.com/hawaii-desktop/swordfish.git
+	url = https://github.com/mauios/swordfish.git
 [submodule "terminal"]
 	path = terminal
 	url = https://github.com/mauios/hawaii-terminal.git
@@ -51,16 +51,16 @@
 	url = https://github.com/hawaii-desktop/archiver.git
 [submodule "fluid"]
 	path = fluid
-	url = https://github.com/hawaii-desktop/fluid.git
+	url = https://github.com/mauios/fluid.git
 [submodule "qt-accountsservice-addon"]
 	path = qt-accountsservice-addon
-	url = https://github.com/hawaii-desktop/qt-accountsservice-addon.git
+	url = https://github.com/mauios/qtaccountsservice.git
 [submodule "shell"]
 	path = shell
 	url = https://github.com/mauios/hawaii-shell.git
 [submodule "cinema"]
 	path = cinema
-	url = https://github.com/hawaii-desktop/cinema.git
+	url = https://github.com/mauios/cinema.git
 [submodule "qtxdg"]
 	path = qtxdg
 	url = https://github.com/hawaii-desktop/qtxdg.git
