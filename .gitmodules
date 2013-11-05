@@ -58,3 +58,6 @@
 [submodule "libqtxdg"]
 	path = libqtxdg
 	url = https://github.com/lxde/libqtxdg.git
+[submodule "qtaccountsservice"]
+	path = qtaccountsservice
+	url = https://github.com/mauios/qtaccountsservice.git
