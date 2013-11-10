@@ -51,7 +51,7 @@ DEPENDENCIES = {
     "wallpapers": "",
     "greenisland": "",
     "shell": "greenisland,fluid,wallpapers,qtconfiguration,qtaccountsservice,polkit-qt-1",
-    "swordfish": "",
+    "swordfish": "fluid",
     "system-preferences": "polkit-qt-1,qtconfiguration,qtaccountsservice",
     "archiver": "kde-karchive",
     "eyesight": "",
