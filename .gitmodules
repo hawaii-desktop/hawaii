@@ -37,9 +37,6 @@
 [submodule "fluid"]
 	path = fluid
 	url = https://github.com/mauios/fluid.git
-[submodule "qt-accountsservice-addon"]
-	path = qt-accountsservice-addon
-	url = https://github.com/mauios/qtaccountsservice.git
 [submodule "shell"]
 	path = shell
 	url = https://github.com/mauios/hawaii-shell.git
