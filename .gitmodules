@@ -33,13 +33,10 @@
 	url = https://github.com/mauios/eyesight.git
 [submodule "archiver"]
 	path = archiver
-	url = https://github.com/hawaii-desktop/archiver.git
+	url = https://github.com/mauios/hawaii-archiver.git
 [submodule "fluid"]
 	path = fluid
 	url = https://github.com/mauios/fluid.git
-[submodule "qt-accountsservice-addon"]
-	path = qt-accountsservice-addon
-	url = https://github.com/mauios/qtaccountsservice.git
 [submodule "shell"]
 	path = shell
 	url = https://github.com/mauios/hawaii-shell.git
