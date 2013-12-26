@@ -1,12 +1,6 @@
 [submodule "kde-extra-cmake-modules"]
 	path = kde-extra-cmake-modules
 	url = git://anongit.kde.org/extra-cmake-modules
-[submodule "kde-solid"]
-	path = kde-solid
-	url = https://github.com/hawaii-desktop/solid.git
-[submodule "kde-karchive"]
-	path = kde-karchive
-	url = https://github.com/hawaii-desktop/karchive.git
 [submodule "polkit-qt-1"]
 	path = polkit-qt-1
 	url = https://github.com/hawaii-desktop/polkit-qt-1.git

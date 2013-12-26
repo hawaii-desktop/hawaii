@@ -7,8 +7,6 @@ COOKIENAME_BUILD = ".hawaii-ci-build-cookie"
 # Modules
 MODULES = [
     "kde-extra-cmake-modules",
-    "kde-solid",
-    "kde-karchive",
     "qtconfiguration",
     "libqtxdg",
     "qtaccountsservice",
@@ -30,8 +28,6 @@ MODULES = [
 
 # Ignore modules
 IGNORED_MODULES = [
-    "kde-solid",
-    "kde-karchive",
     "archiver",
     "libqtxdg"
 ]
@@ -39,8 +35,6 @@ IGNORED_MODULES = [
 # Dependencies
 DEPENDENCIES = {
     "kde-extra-cmake-modules": "",
-    "kde-solid": "kde-extra-cmake-modules",
-    "kde-karchive": "kde-extra-cmake-modules",
     "qtconfiguration": "",
     "libqtxdg": "",
     "qtaccountsservice": "",
@@ -53,7 +47,7 @@ DEPENDENCIES = {
     "shell": "greenisland,fluid,wallpapers,qtconfiguration,qtaccountsservice,polkit-qt-1",
     "swordfish": "fluid",
     "system-preferences": "polkit-qt-1,qtconfiguration,qtaccountsservice",
-    "archiver": "kde-karchive",
+    "archiver": "",
     "eyesight": "",
     "terminal": "",
     "cinema": "fluid",
