@@ -40,7 +40,8 @@ build process if the build time is greater than sudo timeout.
 Dependencies
 ------------
 
-Every submodule needs CMake 2.8.11+ and Qt 5 installed.
+Every submodule needs CMake and Qt 5 installed.
+CMake 2.8.12+ is required by kde-extra-cmake-modules and polkit-qt-1.
 
 Some submodules have more requirements:
 
@@ -49,17 +50,17 @@ If you don't want to build **greenisland** just disable
 it with the --blacklist argument (see the *"Blacklist and whitelist"*
 chapter).
 
-Also the AccountsService DBus service must be installed to make
+Also the AccountsService DBus service must be running to make
 user management working.  The following submodules require
 AccountsService at runtime:
 
-* **greenisland**
+* **shell**
 * **system-preferences**
 
 If you are building under Maui there's no problem because it satisfies
 Hawaii requirements, but you might not be so lucky with other distributions.
 
-ArchLinux is also a reccomended distribution.
+Archlinux is also a reccomended distribution.
 
 ### Build external dependencies from sources
 
@@ -71,16 +72,22 @@ Read the following pages to build Qt 5 and Wayland from sources:
 * http://wayland.freedesktop.org/building.html
 * http://qt-project.org/wiki/Building_Qt_5_from_Git
 
-### Install dependencies on ArchLinux
+### Install dependencies on Archlinux
 
-An ArchLinux repository for x86_64 have been made.
-It contains both external dependencies (Wayland, libxkbcommon, Mesa, Qt5, ...)
+An Archlinux repository for x86_64 have been made.
+It contains both external dependencies (Qt 5, Polkit-Qt-1, ...)
 and the Hawaii desktop environment.
 
 If you are going to build Hawaii from git using the tools provided by this
-repository you would only install the external dependencies.
+repository you would need to install Qt.
 
-For starters, add the following to your /etc/pacman.conf:
+For starters, install qtchooser:
+
+```
+pacman -S qtchooser
+```
+
+Now add the following to your /etc/pacman.conf:
 
 ```
 [hawaii]
@@ -88,33 +95,25 @@ Server = http://archive.maui-project.org/archlinux/$repo/os/$arch
 SigLevel = TrustAll
 ```
 
-Now install all the external dependencies:
+Install Qt 5 with:
 
 ```sh
-pacman -Syu qt5-qtbase-for-hawaii-git qt5-qtwayland-git qt5-qtsvg-git qt5-qtimageformats-git qt5-qtmultimedia-git qt5-qttools-git qt5-qt3d-git qt5-qtgraphicaleffects-git
+pacman -Syu qtbase-git qtdeclarative-git qtwayland-git qtsvg-git qtimageformats-git qtmultimedia-git qttools-git qtquickcontrols-git qtgraphicaleffects-git
 ```
 
-If you want to develop with QtCreator you will also need to install its package:
+Those packages install Qt 5 under /opt/qt-git and provide a profile for qtchooser named "git".
 
-```sh
-pacman -Syu qtcreator-for-qt5-git
-```
-
-These packages install:
-
- * Wayland, Mesa and libxkbcommon in /usr
- * Qt5 in /opt/qt5
-
-As you can see, Qt5 is installed in a non standard location to avoid to interfere with your existing
+As you can see, Qt 5 is installed in a non standard location to avoid to interfere with your existing
 installation.
 
-Add it to your path before building Hawaii:
+Before building Hawaii, please make sure your environment is set correctly:
 
 ```sh
-export PATH=/opt/qt5/bin:$PATH
+export PKG_CONFIG_PATH=/opt/qt-git/lib/pkgconfig
+export LD_LIBRARY_PATH=/opt/qt-git/lib
+export QT_SELECT=git
 ```
 
-Arch Linux users also need to add /opt/qt5/lib to LD_LIBRARY_PATH during the post-installation phase.
 See the [Post-installation](#post-installation) section.
 
 How to use it
@@ -227,10 +226,11 @@ by subsequent launches of compile.  To force a rebuild run compile like this:
 ```
 
 You can also build only specific submodules and their dependencies, for example
-the following command will build vibe and its dependencies (kde-extra-cmake-modules and solid):
+the following command will build shell and its dependencies (greenisland, fluid,
+wallpapers, qtconfiguration, qtaccountsservice and polkit-qt-1).
 
 ```sh
-./compile --module vibe
+./compile --module shell
 ```
 
 ### Post-installation
@@ -245,7 +245,6 @@ export OLD_QT_PLUGIN_PATH=$QT_PLUGIN_PATH
 export OLD_QML2_IMPORT_PATH=$QML2_IMPORT_PATH
 export OLD_XDG_DATA_DIRS=$XDG_DATA_DIRS
 export OLD_LD_LIBRARY_PATH=$LD_LIBRARY_PATH
-export OLD_DESKTOP_SESSION=$DESKTOP_SESSION
 
 # Change environment variables for Hawaii
 baselibdir=/opt/hawaii/lib
@@ -256,18 +255,39 @@ if [ -f /etc/debian_version ]; then
   libdir=$libdir:${baselibdir}/$DEB_HOST_MULTIARCH
 fi
 
+####### PLACEHOLDER #######
+
 export PATH=/opt/hawaii/bin:$PATH
 export QT_MESSAGE_PATTERN='%{appname}(%{pid})/%{category} %{function}: %{message}'
 export QT_PLUGIN_PATH=/opt/hawaii/lib/hawaii/plugins:$QT_PLUGIN_PATH
 export QML2_IMPORT_PATH=/opt/hawaii/lib/hawaii/qml:$QML2_IMPORT_PATH
 export XDG_DATA_DIRS=$XDG_DATA_DIRS:/opt/hawaii/share/
 export LD_LIBRARY_PATH=$libdir:$LD_LIBRARY_PATH
-export DESKTOP_SESSION=hawaii
 ```
 
 Installing all the software under /opt/hawaii has the advantage that in order
 to uninstall you can just remove the whole directory, but you can install in
 whatever path you want, even /usr/local.
+
+Replace the place holder with code that sets the enviornment according to the
+location of your Qt installation.
+
+Archlinux users that are using our packages should put the following code:
+
+```
+export PKG_CONFIG_PATH=/opt/qt-git/lib/pkgconfig
+export LD_LIBRARY_PATH=/opt/qt-git/lib
+export QT_SELECT=git
+```
+
+Other users might put this code instead (change QTDIR according to your setup):
+
+```
+export QTDIR=...your Qt path...
+export PKG_CONFIG_PATH=$QTDIR/lib/pkgconfig
+export LD_LIBRARY_PATH=$QTDIR/lib
+export PATH=$QTDIR/bin:$PATH
+```
 
 You might not want to set the environment variables above permanently, you can
 put them into a separate file and load it when you want to use Hawaii and
@@ -283,7 +303,6 @@ export QT_PLUGIN_PATH=$OLD_QT_PLUGIN_PATH
 export QML2_IMPORT_PATH=$OLD_QML2_IMPORT_PATH
 export XDG_DATA_DIRS=$OLD_XDG_DATA_DIRS
 export LD_LIBRARY_PATH=$OLD_LD_LIBRARY
-export DESKTOP_SESSION=$OLD_DESKTOP_SESSION
 ```
 
 When you want to use Hawaii and its applications just do:
@@ -338,11 +357,11 @@ The compile script also lets you specify a blacklist and a whitelist
 of submodules.
 
 In the following example we assume that compile ignores icon-themes by
-default. We put kde-solid and vibe into the blacklist and override the
+default. We put wallpapers and widget-styles into the blacklist and override the
 default blacklist by placing icon-themes on the whitelist:
 
 ```sh
-./compile --blacklist kde-solid vibe --whitelist icon-themes
+./compile --blacklist wallpapers widget-styles --whitelist icon-themes
 ```
 
 If both --blacklist and --whitelist are passed, the latter takes
