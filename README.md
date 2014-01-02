@@ -109,6 +109,7 @@ installation.
 Before building Hawaii, please make sure your environment is set correctly:
 
 ```sh
+export CMAKE_PREFIX_PATH=/opt/qt-git
 export PKG_CONFIG_PATH=/opt/qt-git/lib/pkgconfig
 export LD_LIBRARY_PATH=/opt/qt-git/lib
 export QT_SELECT=git
