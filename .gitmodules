@@ -52,3 +52,6 @@
 [submodule "qtaccountsservice"]
 	path = qtaccountsservice
 	url = https://github.com/mauios/qtaccountsservice.git
+[submodule "yat"]
+	path = yat
+	url = https://github.com/jorgen/yat.git

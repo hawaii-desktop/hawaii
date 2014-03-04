@@ -21,6 +21,7 @@ MODULES = [
     "system-preferences",
     "archiver",
     "eyesight",
+    "yat",
     "terminal",
     "cinema",
     "widget-factory",
@@ -49,7 +50,8 @@ DEPENDENCIES = {
     "system-preferences": "polkit-qt-1,qtconfiguration,qtaccountsservice",
     "archiver": "",
     "eyesight": "",
-    "terminal": "",
+    "yat": "",
+    "terminal": "yat",
     "cinema": "fluid",
     "widget-factory": "widget-styles",
 }
