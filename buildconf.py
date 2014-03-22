@@ -30,7 +30,9 @@ MODULES = [
 # Ignore modules
 IGNORED_MODULES = [
     "archiver",
-    "libqtxdg"
+    "libqtxdg",
+    "yat",
+    "terminal"
 ]
 
 # Dependencies
