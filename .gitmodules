@@ -3,7 +3,7 @@
 	url = git://anongit.kde.org/extra-cmake-modules
 [submodule "polkit-qt-1"]
 	path = polkit-qt-1
-	url = https://github.com/hawaii-desktop/polkit-qt-1.git
+	url = https://github.com/plfiorini/polkit-qt-1.git
 [submodule "widget-styles"]
 	path = widget-styles
 	url = https://github.com/mauios/hawaii-widget-styles.git
