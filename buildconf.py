@@ -49,7 +49,7 @@ DEPENDENCIES = {
     "greenisland": "",
     "shell": "greenisland,fluid,wallpapers,qtconfiguration,qtaccountsservice,polkit-qt-1",
     "swordfish": "fluid",
-    "system-preferences": "polkit-qt-1,qtconfiguration,qtaccountsservice",
+    "system-preferences": "polkit-qt-1,qtconfiguration,qtaccountsservice,shell",
     "archiver": "",
     "eyesight": "",
     "yat": "",
