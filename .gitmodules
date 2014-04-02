@@ -55,3 +55,6 @@
 [submodule "yat"]
 	path = yat
 	url = https://github.com/jorgen/yat.git
+[submodule "libhawaii"]
+	path = libhawaii
+	url = https://github.com/mauios/libhawaii.git
