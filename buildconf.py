@@ -5,28 +5,68 @@ COOKIENAME_CONFIGURE = ".hawaii-ci-configure-cookie"
 COOKIENAME_BUILD = ".hawaii-ci-build-cookie"
 
 # Modules
-MODULES = [
-    "kde-extra-cmake-modules",
-    "qtconfiguration",
-    "libqtxdg",
-    "qtaccountsservice",
-    "polkit-qt-1",
-    "widget-styles",
-    "icon-themes",
-    "wallpapers",
-    "fluid",
-    "greenisland",
-    "libhawaii",
-    "shell",
-    "swordfish",
-    "system-preferences",
-    "archiver",
-    "eyesight",
-    "yat",
-    "terminal",
-    "cinema",
-    "widget-factory",
-]
+MODULES = {
+    "kde-extra-cmake-modules": {
+        "branch": "master"
+    },
+    "qtconfiguration": {
+        "branch": "dev"
+    },
+    "libqtxdg": {
+        "branch": "master"
+    },
+    "qtaccountsservice": {
+        "branch": "dev",
+    },
+    "polkit-qt-1": {
+        "branch": "wip/qt4and5",
+    },
+    "widget-styles": {
+        "branch": "dev"
+    },
+    "icon-themes": {
+        "branch": "dev"
+    },
+    "wallpapers": {
+        "branch": "dev"
+    },
+    "fluid": {
+        "branch": "dev"
+    },
+    "greenisland": {
+        "branch": "dev"
+    },
+    "libhawaii": {
+        "branch": "dev"
+    },
+    "shell": {
+        "branch": "dev"
+    },
+    "swordfish": {
+        "branch": "dev"
+    },
+    "system-preferences": {
+        "branch": "dev"
+    },
+    "archiver": {
+        "branch": "dev"
+    },
+    "eyesight": {
+        "branch": "dev"
+    },
+    "yat": {
+        "branch": "dev"
+    },
+    "terminal": {
+        "branch": "dev"
+    },
+    "cinema": {
+        "branch": "dev"
+    },
+    "widget-factory": {
+        "branch": "dev"
+    }
+}
 
 # Ignore modules
 IGNORED_MODULES = [

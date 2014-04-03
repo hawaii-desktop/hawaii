@@ -31,7 +31,7 @@ def gitconfig():
 
 def module(string):
     """Argument parser type checker for module arguments"""
-    if string in MODULES:
+    if string in MODULES.keys():
         return string
 
     raise argparse.ArgumentTypeError("No such module '%s'" % string)
@@ -93,6 +93,14 @@ def switch(args):
             if value[:len(old_base_url)]:
                 switch_remote(value, old_base_url, new_base_url)
 
+def branch(args):
+    for submodule in args.submodules:
+        if not MODULES.has_key(submodule):
+            continue
+        branch = MODULES[submodule].get("branch", None)
+        if branch:
+            run_sync(["git", "checkout", branch], cwd=submodule)
+
 def forward(args):
     for module in args.submodules:
         # Update the submodule
@@ -105,7 +113,7 @@ def forward(args):
                 os.unlink(cookiefilename)
 
 if __name__ == "__main__":
-    submodules = list(set(MODULES) - set(IGNORED_MODULES))
+    submodules = list(set(MODULES.keys()) - set(IGNORED_MODULES))
 
     root_parser = argparse.ArgumentParser()
     sps = root_parser.add_subparsers()
@@ -122,6 +130,10 @@ if __name__ == "__main__":
     sp = sps.add_parser("forward", help="pull modules in each folder")
     sp.add_argument("submodules", nargs='*', type=module)
     sp.set_defaults(func=forward, submodules=submodules)
+
+    sp = sps.add_parser("branch", help="switch each submodule to the default branch")
+    sp.add_argument("submodules", nargs='*', type=module)
+    sp.set_defaults(func=branch, submodules=submodules)
 
     args = root_parser.parse_args()
     args.func(args)

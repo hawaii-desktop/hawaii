@@ -94,7 +94,7 @@ def determine_modules(args, moduleslist):
     blacklist = list(set(IGNORED_MODULES + blacklist) - set(whitelist))
 
     # Create an entry for each module
-    for m in MODULES:
+    for m in MODULES.keys():
         modules[m] = Module(m)
 
     # Add dependencies
@@ -113,7 +113,7 @@ def determine_modules(args, moduleslist):
     return supported_modules
 
 def build(args):
-    moduleslist = MODULES
+    moduleslist = MODULES.keys()
 
     # Override modules with the ones from the command line
     if args.module:
@@ -122,7 +122,7 @@ def build(args):
     # Check whether all modules exists
     status = True
     for m in moduleslist:
-        if m not in MODULES:
+        if m not in MODULES.keys():
             print >>sys.stderr, "Unknown '%s' submodule!" % m
             status = False
         elif os.path.exists(m):
