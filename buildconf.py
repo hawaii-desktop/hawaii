@@ -73,7 +73,8 @@ IGNORED_MODULES = [
     "archiver",
     "libqtxdg",
     "yat",
-    "terminal"
+    "terminal",
+    "greenisland"
 ]
 
 # Dependencies
@@ -89,7 +90,7 @@ DEPENDENCIES = {
     "wallpapers": "",
     "greenisland": "",
     "libhawaii": "kde-extra-cmake-modules",
-    "shell": "greenisland,fluid,libhawaii,wallpapers,qtconfiguration,qtaccountsservice,polkit-qt-1",
+    "shell": "fluid,libhawaii,wallpapers,qtconfiguration,qtaccountsservice,polkit-qt-1",
     "swordfish": "fluid",
     "system-preferences": "polkit-qt-1,qtconfiguration,qtaccountsservice,libhawaii",
     "archiver": "",
