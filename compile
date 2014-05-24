@@ -180,7 +180,8 @@ def build_module(module, args):
         "-DCMAKE_PREFIX_PATH=%s/lib/cmake" % args.prefix,
         "-DCMAKE_INSTALL_LIBDIR=lib",
         "-DCMAKE_BUILD_TYPE=Debug",
-        "-DLIB_INSTALL_DIR=%s/lib" % args.prefix
+        "-DLIB_INSTALL_DIR=%s/lib" % args.prefix,
+        "-DINCLUDE_INSTALL_DIR=%s/include" % args.prefix
     ])
     cmakeargs.extend(CUSTOM_CMAKE_ARGS.get(module.name, []))
 
