@@ -7,6 +7,8 @@
 
   <project name="greenisland" path="desktop/greenisland" groups="desktop"/>
   <project name="hawaii-shell" path="desktop/shell" groups="desktop"/>
+  <project name="hawaii-wallpapers" path="desktop/wallpapers" groups="desktop"/>
+  <project name="wind" path="desktop/wind" groups="desktop"/>
 
   <project name="swordfish" path="apps/swordfish" groups="apps"/>
   <project name="cinema" path="apps/cinema" groups="apps"/>
