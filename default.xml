@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <include name="_remote.xml" />
+  <default revision="master"
+           remote="hawaii"
+           sync-j="4" />
+
+  <project name="greenisland" path="desktop/greenisland" groups="desktop"/>
+  <project name="hawaii-shell" path="desktop/shell" groups="desktop"/>
+
+  <project name="swordfish" path="apps/swordfish" groups="apps"/>
+  <project name="cinema" path="apps/cinema" groups="apps"/>
+  <project name="eyesight" path="apps/eyesight" groups="apps"/>
+  <project name="hawaii-terminal" path="apps/terminal" groups="apps"/>
+  <project name="hawaii-archiver" path="apps/archiver" groups="apps"/>
+
+  <project name="qtaccountsservice" path="libraries/qtaccountsservice" groups="libraries"/>
+  <project name="qtconfiguration" path="libraries/qtconfiguration" groups="libraries"/>
+</manifest>
