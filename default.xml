@@ -6,16 +6,25 @@
            sync-j="4" />
 
   <project name="greenisland" path="desktop/greenisland" groups="desktop"/>
-  <project name="hawaii-shell" path="desktop/shell" groups="desktop"/>
-  <project name="hawaii-wallpapers" path="desktop/wallpapers" groups="desktop"/>
-  <project name="wind" path="desktop/wind" groups="desktop"/>
+  <project name="hawaii-shell" path="desktop/hawaii-shell" groups="desktop"/>
+  <project name="hawaii-system-preferences" path="desktop/hawaii-system-preferences" groups="desktop"/>
+  <project name="hawaii-baseapps" path="desktop/hawaii-baseapps" groups="desktop"/>
+  <project name="hawaii-initial-setup" path="desktop/hawaii-initial-setup" groups="desktop"/>
+  <project name="hawaii-wallpapers" path="desktop/hawaii-wallpapers" groups="desktop"/>
+  <project name="hawaii-widget-styles" path="desktop/hawaii-widget-styles" groups="desktop"/>
+  <project name="hawaii-icon-themes" path="desktop/hawaii-icon-themes" groups="desktop"/>
+  <project name="hawaii-plymouth-theme" path="desktop/hawaii-plymouth-theme" groups="desktop"/>
 
   <project name="swordfish" path="apps/swordfish" groups="apps"/>
-  <project name="cinema" path="apps/cinema" groups="apps"/>
+  <!-- <project name="cinema" path="apps/cinema" groups="apps"/> -->
   <project name="eyesight" path="apps/eyesight" groups="apps"/>
-  <project name="hawaii-terminal" path="apps/terminal" groups="apps"/>
-  <project name="hawaii-archiver" path="apps/archiver" groups="apps"/>
+  <project name="hawaii-terminal" path="apps/hawaii-terminal" groups="apps"/>
+  <project name="hawaii-archiver" path="apps/hawaii-archiver" groups="apps"/>
+  <project name="hawaii-2048" path="apps/hawaii-2048" groups="apps"/>
 
   <project name="qtaccountsservice" path="libraries/qtaccountsservice" groups="libraries"/>
   <project name="qtconfiguration" path="libraries/qtconfiguration" groups="libraries"/>
+
+  <project name="builder" path="misc/builder" groups="misc"/>
+  <project name="repotools" path="misc/repotools" groups="misc"/>
 </manifest>
