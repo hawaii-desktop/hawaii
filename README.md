@@ -1,12 +1,18 @@
 Hawaii
 ======
 
-This repository contains manifest files for the Hawaii desktop environment.
+This repository contains the following material:
+
+* Manifest files to build the desktop.
+* General issue tracker.
+* Wiki.
+
+## Manifest
+
 Manifest files describe the project structure and is used by git-repo
 to fetch all the packages repositories.
 
-How to use it
--------------
+### How to use it
 
 To prepare for cloning, perform the following procedure:
 
@@ -36,7 +42,7 @@ mkdir ~/hawaii
 cd ~/hawaii
 ```
 
-## Clone latest sources
+### Clone latest sources
 
 To clone the latest source of all projects over SSH, perform the following procedure:
 
@@ -45,13 +51,13 @@ To clone the latest source of all projects over SSH, perform the following proce
 For developer access:
 
 ```sh
-repo init -u ssh://git@github.com/mauios/hawaii-manifest.git
+repo init -u ssh://git@github.com/hawaii-desktop/hawaii-manifest.git
 ```
 
 For read-only access:
 
 ```sh
-repo init -u https://github.com/mauios/hawaii-manifest.git
+repo init -u https://github.com/hawaii-desktop/hawaii-manifest.git
 ```
 
 2. Synchronize the repository by executing the following command:
@@ -60,7 +66,7 @@ repo init -u https://github.com/mauios/hawaii-manifest.git
 repo sync
 ```
 
-## Get ready for development
+### Get ready for development
 
 repo doesn't create local branches for you, hence you end up with a
 detached head that points to the last known good commit.
@@ -69,4 +75,21 @@ Before you start developing make sure you have local branches:
 
 ```sh
 repo forall -c 'git checkout $REPO_RREV'
+```
+
+## General issue tracker
+
+Click on the [Issues](https://github.com/hawaii-desktop/hawaii/issues) tab
+and submit issues.
+
+## Wiki
+
+Click on the [Wiki](https://github.com/hawaii-desktop/hawaii/wiki) tab, read and/or write new content.
+
+Alternatively you can clone the Wiki repository, work on your local system and push the changes back.
+
+Clone the repository with:
+
+```sh
+git clone git@github.com:hawaii-desktop/hawaii.git
 ```
