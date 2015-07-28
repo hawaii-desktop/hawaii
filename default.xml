@@ -12,7 +12,7 @@
   <project name="hawaii-initial-setup" path="desktop/hawaii-initial-setup" groups="desktop"/>
   <project name="hawaii-wallpapers" path="desktop/hawaii-wallpapers" groups="desktop"/>
   <project name="hawaii-widget-styles" path="desktop/hawaii-widget-styles" groups="desktop"/>
-  <project name="hawaii-icon-themes" path="desktop/hawaii-icon-themes" groups="desktop"/>
+  <project name="hawaii-icon-theme" path="desktop/hawaii-icon-theme" groups="desktop"/>
   <project name="hawaii-plymouth-theme" path="desktop/hawaii-plymouth-theme" groups="desktop"/>
 
   <project name="swordfish" path="apps/swordfish" groups="apps"/>
