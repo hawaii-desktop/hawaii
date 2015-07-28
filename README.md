@@ -35,7 +35,7 @@ curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/bin/rep
 3. Change the attribute of repo to make it executable by executing the command:
 
 ```sh
-sudo chmod a+x ~/bin/repo
+chmod a+x ~/bin/repo
 ```
 
 4. Create a new directory for Hawaii and then switch to it by executing the following commands:
