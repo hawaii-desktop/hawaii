@@ -94,5 +94,5 @@ Alternatively you can clone the Wiki repository, work on your local system and p
 Clone the repository with:
 
 ```sh
-git clone git@github.com:hawaii-desktop/hawaii.git
+git clone git@github.com:hawaii-desktop/hawaii.wiki.git
 ```
