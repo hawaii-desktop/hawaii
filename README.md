@@ -54,13 +54,13 @@ To clone the latest source of all projects over SSH, perform the following proce
 For developer access:
 
 ```sh
-repo init -u ssh://git@github.com/hawaii-desktop/hawaii-manifest.git
+repo init -u ssh://git@github.com/hawaii-desktop/hawaii.git
 ```
 
 For read-only access:
 
 ```sh
-repo init -u https://github.com/hawaii-desktop/hawaii-manifest.git
+repo init -u https://github.com/hawaii-desktop/hawaii.git
 ```
 
 2. Synchronize the repository by executing the following command:
