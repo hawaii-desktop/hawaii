@@ -80,6 +80,13 @@ Before you start developing make sure you have local branches:
 repo forall -c 'git checkout $REPO_RREV'
 ```
 
+Now set git to use the commit template that will help you write
+good commit messages:
+
+```sh
+ROOTDIR=$(pwd) repo forall -c 'git config commit.template $ROOTDIR/misc/repotools/.commit-template'
+```
+
 ## General issue tracker
 
 Click on the [Issues](https://github.com/hawaii-desktop/hawaii/issues) tab
