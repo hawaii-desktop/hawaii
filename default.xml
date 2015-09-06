@@ -7,6 +7,7 @@
 
   <project name="greenisland" path="desktop/greenisland" groups="desktop"/>
   <project name="hawaii-shell" path="desktop/hawaii-shell" groups="desktop"/>
+  <project name="libhawaii" path="desktop/libhawaii" groups="desktop"/>
   <project name="hawaii-system-preferences" path="desktop/hawaii-system-preferences" groups="desktop"/>
   <project name="hawaii-baseapps" path="desktop/hawaii-baseapps" groups="desktop"/>
   <project name="hawaii-initial-setup" path="desktop/hawaii-initial-setup" groups="desktop"/>
