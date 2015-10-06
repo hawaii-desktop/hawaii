@@ -28,4 +28,7 @@
 
   <project name="builder" path="misc/builder" groups="misc"/>
   <project name="repotools" path="misc/repotools" groups="misc"/>
+
+  <project name="docs-index" path="docs/index" revision="master" groups="docs"/>
+  <project name="docs-hig" path="docs/hig" revision="master" groups="docs"/>
 </manifest>
