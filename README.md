@@ -1,8 +1,8 @@
-[![Stories in Ready](https://badge.waffle.io/hawaii-desktop/hawaii.png?label=ready&title=Ready)](https://waffle.io/hawaii-desktop/hawaii)
 Hawaii
 ======
 
 [![Join the chat at https://gitter.im/hawaii-desktop](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/hawaii-desktop?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Stories in Ready](https://badge.waffle.io/hawaii-desktop/hawaii.png?label=ready&title=Ready)](https://waffle.io/hawaii-desktop/hawaii)
 [![IRC Network](https://img.shields.io/badge/irc-freenode-blue.svg "IRC Freenode")](https://webchat.freenode.net/?channels=hawaii-desktop)
 
 This repository contains the following material:
