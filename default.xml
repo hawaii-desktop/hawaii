@@ -9,7 +9,7 @@
   <project name="hawaii-shell" path="desktop/hawaii-shell" groups="desktop"/>
   <project name="libhawaii" path="desktop/libhawaii" groups="desktop"/>
   <project name="hawaii-system-preferences" path="desktop/hawaii-system-preferences" groups="desktop"/>
-  <project name="hawaii-baseapps" path="desktop/hawaii-baseapps" groups="desktop"/>
+  <project name="hawaii-workspace" path="desktop/hawaii-workspace" groups="desktop"/>
   <project name="hawaii-initial-setup" path="desktop/hawaii-initial-setup" groups="desktop"/>
   <project name="hawaii-wallpapers" path="desktop/hawaii-wallpapers" groups="desktop"/>
   <project name="hawaii-widget-styles" path="desktop/hawaii-widget-styles" groups="desktop"/>
