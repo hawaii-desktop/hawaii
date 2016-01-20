@@ -23,6 +23,7 @@
   <project name="hawaii-archiver" path="apps/hawaii-archiver" groups="apps"/>
   <project name="hawaii-2048" path="apps/hawaii-2048" groups="apps"/>
 
+  <project name="fluid" path="libraries/fluid" groups="libraries"/>
   <project name="qtaccountsservice" path="libraries/qtaccountsservice" groups="libraries"/>
   <project name="qtconfiguration" path="libraries/qtconfiguration" groups="libraries"/>
 
